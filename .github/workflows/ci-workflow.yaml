@@ -1,0 +1,18 @@
+---
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    strategy:
+      max-parallel: 2
+      matrix:
+        # Available Python versions: https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
+        python: [ '3.8', '3.10' ]
+    name: python ${{ matrix.python }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+      - run: make ci

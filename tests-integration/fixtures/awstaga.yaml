@@ -1,0 +1,17 @@
+---
+tagsets:
+  - name: test-tagset
+    tags:
+      - key: test-key
+        value: test-value
+      - key: test-key2
+        value: test-value2
+resources:
+  - arn: test-resource
+    type: aws_instance
+    tags:
+      - key: test-key
+        value: test-value
+    tagsets:
+      - test-tagset
+```
