@@ -1,0 +1,22 @@
+---
+name: Release Major
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.STUDIO_GITHUB_TOKEN }}
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: git config --global user.email "blah+pakkun@cliffano.com"
+      - run: git config --global user.name "pakkunbot"
+      - run: npm install -g rtk
+      - run: make release-major
+      - uses: ad-m/github-push-action@v0.6.0
+        with:
+          tags: true
+          github_token: ${{ secrets.STUDIO_GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

@@ -1,3 +1,2 @@
 [MASTER]
-init-hook='import sys; sys.path.append(".")'
 load-plugins=pylint_report

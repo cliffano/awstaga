@@ -5,7 +5,7 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     strategy:
-      max-parallel: 2
+      max-parallel: 1
       matrix:
         # Available Python versions: https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
         python: [ '3.8', '3.10' ]
@@ -16,3 +16,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: make ci
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.STUDIO_GITHUB_TOKEN }}
+          publish_dir: docs

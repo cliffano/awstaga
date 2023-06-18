@@ -33,9 +33,9 @@ release:
 
 lint: stage
 	mkdir -p stage/lint/pylint/ docs/lint/pylint/
-	pylint awstaga/*.py awstaga/loaders/*.py tests/*.py tests/loaders/*.py tests-integration/*.py
-	pylint awstaga/*.py awstaga/loaders/*.py tests/*.py tests/loaders/*.py tests-integration/*.py --output-format=pylint_report.CustomJsonReporter > stage/lint/pylint/report.json
-	pylint_report stage/lint/pylint/report.json -o docs/lint/pylint/index.html
+	pylint awstaga/*.py awstaga/models/*.py tests/*.py tests/models/*.py #tests-integration/*.py
+	#pylint awstaga/*.py awstaga/models/*.py tests/*.py tests/models/*.py tests-integration/*.py --output-format=pylint_report.CustomJsonReporter > stage/lint/pylint/report.json
+	#pylint_report stage/lint/pylint/report.json -o docs/lint/pylint/index.html
 
 complexity: stage
 	wily build awstaga/

@@ -1,11 +1,12 @@
 """Configuration loader.
 """
-from awstaga.models.resource import Resource
-from awstaga.models.tag import Tag
-from awstaga.models.tagset import TagSet
+from typing import Tuple
 import yaml
+from .models.resource import Resource
+from .models.tag import Tag
+from .models.tagset import TagSet
 
-def load(conf_file):
+def load(conf_file: str) -> Tuple[dict, list]:
     """Load configuration values from file.
     """
     tagsets = {}

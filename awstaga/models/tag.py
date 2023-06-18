@@ -1,12 +1,19 @@
-class Tag(object):
-    def __init__(self, key, value):
+"""This module contains the Tag class."""
+
+class Tag():
+    """This class represents a tag.
+    It contains the key and value pair of the tag.
+    """
+
+    def __init__(self, key: str, value: str) -> None:
+        """Initialize the Tag object."""
         self.key = key
         self.value = value
 
-    def get_key(self):
+    def get_key(self) -> str:
         """Return the key of the tag."""
         return self.key
-    
-    def get_value(self):
+
+    def get_value(self) -> str:
         """Return the value of the tag."""
         return self.value
