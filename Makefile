@@ -1,6 +1,7 @@
 version=`yq -r .version conf/info.yaml`
 
 ci: clean deps lint test coverage complexity doc package reinstall test-integration
+dev: clean deps lint test coverage doc package reinstall test-integration
 
 clean:
 	rm -rf stage *.egg-info build dist docs/ __pycache__/ awstaga/__pycache__/ awstaga/*.pyc tests/__pycache__/ tests/*.pyc tests-integration/__pycache__/ tests-integration/*.pyc .coverage .pytest_cache/
@@ -11,6 +12,9 @@ stage:
 deps:
 	pip3 install --ignore-installed -r requirements.txt
 	pip3 install --ignore-installed -r requirements-dev.txt
+
+deps-extra:
+	apt-get install jq
 
 doc: stage
 	rm -rf docs/doc/sphinx/ && mkdir -p docs/doc/sphinx/
@@ -45,8 +49,9 @@ test:
 	pytest -v tests --html=docs/test/pytest/index.html --self-contained-html
 
 test-integration:
-	rm -rf stage/test-integration/ && mkdir -p stage/test-integration/
-	python3 -m unittest tests-integration/*.py
+	examples/run.sh
+	#rm -rf stage/test-integration/ && mkdir -p stage/test-integration/
+	#python3 -m unittest tests-integration/*.py
 
 coverage:
 	COVERAGE_FILE=.coverage.unit coverage run --source=./awstaga -m unittest discover -s tests

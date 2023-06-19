@@ -23,6 +23,12 @@ setuptools.setup(
     keywords=['awstaga', 'aws', 'tag', 'tagging'],
     packages=setuptools.find_packages(),
     include_package_data=True,
+    py_modules=['awstaga'],
+    entry_points={
+        'console_scripts': [
+            'awstaga = awstaga:cli',
+        ],
+    },
     classifiers=[
         'Programming Language :: Python :: 3',
         'License :: OSI Approved :: Apache Software License',
@@ -30,5 +36,8 @@ setuptools.setup(
     ],
     python_requires='>=3.8',
     install_requires=[
+        'boto3==1.26.155',
+        'click==8.1.3',
+        'PyYAML==6.0'
     ],
 )

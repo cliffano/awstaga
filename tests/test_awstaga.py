@@ -34,7 +34,7 @@ class TestAwstaga(unittest.TestCase):
         mock_tagset.get_tags.return_value = [mock_tagset_tag]
         mock_resource.get_tags.return_value = [mock_resource_tag]
 
-        apply('awstaga.yaml')
+        apply(conf_file='awstaga.yaml')
         mock_client.tag_resources.assert_called_once_with(
             ResourceARNList=['somearn'],
             Tags={'sometagkey': 'sometagvalue', 'someresourcekey': 'someresourcevalue'}
