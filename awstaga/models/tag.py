@@ -17,3 +17,11 @@ class Tag():
     def get_value(self) -> str:
         """Return the value of the tag."""
         return self.value
+
+    def __str__(self) -> str:
+        """Return the string representation of the Tag object."""
+        return f'{self.key}={self.value}'
+
+    def __repr__(self) -> str:
+        """Return the string representation of the Tag object."""
+        return f'{self.key}={self.value}'
