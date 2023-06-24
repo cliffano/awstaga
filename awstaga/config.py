@@ -8,7 +8,7 @@ from .models.tag import Tag
 from .models.tagset import TagSet
 from .logger import init
 
-def load(conf_file: str) -> Tuple[dict, list]: # pylint: disable=too-many-locals
+def load(conf_file: str) -> Tuple[dict, list]:
     """Load configuration values from file.
     """
 
