@@ -8,3 +8,5 @@ class TestTag(unittest.TestCase):
         tag = Tag('somekey', 'somevalue')
         self.assertEqual(tag.get_key(), 'somekey')
         self.assertEqual(tag.get_value(), 'somevalue')
+        self.assertEqual(str(tag), 'somekey=somevalue')
+        self.assertEqual(repr(tag), 'somekey=somevalue')
