@@ -2,6 +2,7 @@
 from unittest.mock import patch, call, mock_open
 import unittest.mock
 import unittest
+import yaml
 from awstaga.config import load
 
 CONFIG_WITH_PROPERTIES = '''
@@ -24,10 +25,12 @@ resources:
 '''
 
 CONFIG_WITHOUT_VALUES = '''
+---
+tagsets:
+resources:
 '''
 
 CONFIG_EMPTY = '''
----
 '''
 
 CONFIG_INVALID = '''
@@ -82,3 +85,39 @@ class TestConfig(unittest.TestCase):
             call('Loaded resource test-resource-arn with tags '\
                  "(test-key=test-value,) and tagsetnames ('test-tagset',)")
         ])
+
+    @patch('builtins.open', new_callable=mock_open, read_data=CONFIG_WITHOUT_VALUES)
+    @patch('awstaga.config.init')
+    def test_load_without_values(self, func_init, func_open): # pylint: disable=unused-argument
+        with open('awstaga.yaml', 'r', encoding='utf8') as file_handle:
+            assert file_handle.read() == CONFIG_WITHOUT_VALUES
+
+        mock_logger = unittest.mock.Mock()
+
+        func_init.return_value = mock_logger
+
+        tagsets, resources = load('awstaga.yaml')
+        self.assertEqual(tagsets, {})
+        self.assertEqual(resources, [])
+
+        self.assertEqual(mock_logger.warning.call_count, 2)
+        mock_logger.warning.assert_has_calls([
+            call('No tagsets found in configuration file'),
+            call('No resources found in configuration file')
+        ])
+
+    @patch('builtins.open', new_callable=mock_open, read_data=CONFIG_EMPTY)
+    def test_load_empty_config(self, func_open): # pylint: disable=unused-argument
+        with open('awstaga.yaml', 'r', encoding='utf8') as file_handle:
+            assert file_handle.read() == CONFIG_EMPTY
+
+        tagsets, resources = load('awstaga.yaml')
+        self.assertEqual(tagsets, {})
+        self.assertEqual(resources, [])
+
+    @patch('builtins.open', new_callable=mock_open, read_data=CONFIG_INVALID)
+    def test_load_invalid_config(self, func_open): # pylint: disable=unused-argument
+        with open('awstaga.yaml', 'r', encoding='utf8') as file_handle:
+            assert file_handle.read() == CONFIG_INVALID
+        with self.assertRaises(yaml.scanner.ScannerError):
+            load('awstaga.yaml')

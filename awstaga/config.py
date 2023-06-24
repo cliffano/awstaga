@@ -22,27 +22,39 @@ def load(conf_file: str) -> Tuple[dict, list]: # pylint: disable=too-many-locals
             for key, value in conf_yaml.items():
 
                 if key == 'tagsets':
-                    logger.info(f'Loading {len(value)} tagset(s)...')
-                    for tagset in value:
-                        name = tagset['name']
-                        tags = []
-                        for tag in tagset['tags']:
-                            tags.append(Tag(tag['key'], tag['value']))
-                        logger.debug(f'Loaded tagset {name} with tags {*tags,}')
-                        tagsets[name] = TagSet(name, tags)
+                    if value is not None:
+                        logger.info(f'Loading {len(value)} tagset(s)...')
+                        _load_tagsets(logger, tagsets, value)
+                    else:
+                        logger.warning('No tagsets found in configuration file')
 
                 elif key == 'resources':
-                    logger.info(f'Loading {len(value)} resource(s)...')
-                    for resource in value:
-                        arn = resource['arn']
-                        tags = []
-                        for tag in resource['tags']:
-                            tags.append(Tag(tag['key'], tag['value']))
-                        tagset_names = []
-                        for tagsetname in resource['tagsetnames']:
-                            tagset_names.append(tagsetname)
-                        logger.debug(f'Loaded resource {arn} with '\
-                                     f'tags {*tags,} and tagsetnames {*tagset_names,}')
-                        resources.append(Resource(arn, tags, tagset_names))
+                    if value is not None:
+                        logger.info(f'Loading {len(value)} resource(s)...')
+                        _load_resources(logger, resources, value)
+                    else:
+                        logger.warning('No resources found in configuration file')
 
     return tagsets, resources
+
+def _load_tagsets(logger, tagsets: dict, tagsets_conf: list) -> None:
+    for tagset in tagsets_conf:
+        name = tagset['name']
+        tags = []
+        for tag in tagset['tags']:
+            tags.append(Tag(tag['key'], tag['value']))
+        logger.debug(f'Loaded tagset {name} with tags {*tags,}')
+        tagsets[name] = TagSet(name, tags)
+
+def _load_resources(logger, resources: list, resources_conf: list) -> None:
+    for resource in resources_conf:
+        arn = resource['arn']
+        tags = []
+        for tag in resource['tags']:
+            tags.append(Tag(tag['key'], tag['value']))
+        tagset_names = []
+        for tagsetname in resource['tagsetnames']:
+            tagset_names.append(tagsetname)
+        logger.debug(f'Loaded resource {arn} with '\
+                     f'tags {*tags,} and tagsetnames {*tagset_names,}')
+        resources.append(Resource(arn, tags, tagset_names))
