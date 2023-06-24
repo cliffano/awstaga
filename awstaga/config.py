@@ -22,7 +22,7 @@ def load(conf_file: str) -> Tuple[dict, list]: # pylint: disable=too-many-locals
             for key, value in conf_yaml.items():
 
                 if key == 'tagsets':
-                    logger.info('Loading tagsets...')
+                    logger.info(f'Loading {len(value)} tagset(s)...')
                     for tagset in value:
                         name = tagset['name']
                         tags = []
@@ -32,7 +32,7 @@ def load(conf_file: str) -> Tuple[dict, list]: # pylint: disable=too-many-locals
                         tagsets[name] = TagSet(name, tags)
 
                 elif key == 'resources':
-                    logger.info('Loading resources...')
+                    logger.info(f'Loading {len(value)} resource(s)...')
                     for resource in value:
                         arn = resource['arn']
                         tags = []

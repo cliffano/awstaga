@@ -71,8 +71,8 @@ class TestConfig(unittest.TestCase):
 
         self.assertEqual(mock_logger.info.call_count, 2)
         mock_logger.info.assert_has_calls([
-            call('Loading tagsets...'),
-            call('Loading resources...')
+            call('Loading 1 tagset(s)...'),
+            call('Loading 1 resource(s)...')
         ])
 
         self.assertEqual(mock_logger.debug.call_count, 2)
