@@ -37,9 +37,9 @@ release:
 
 lint: stage
 	mkdir -p stage/lint/pylint/ docs/lint/pylint/
-	pylint awstaga/*.py awstaga/models/*.py tests/*.py tests/models/*.py #tests-integration/*.py
-	#pylint awstaga/*.py awstaga/models/*.py tests/*.py tests/models/*.py tests-integration/*.py --output-format=pylint_report.CustomJsonReporter > stage/lint/pylint/report.json
-	#pylint_report stage/lint/pylint/report.json -o docs/lint/pylint/index.html
+	pylint awstaga/*.py awstaga/models/*.py tests/*.py tests/models/*.py tests-integration/*.py
+	pylint awstaga/*.py awstaga/models/*.py tests/*.py tests/models/*.py tests-integration/*.py --output-format=pylint_report.CustomJsonReporter > stage/lint/pylint/report.json
+	pylint_report stage/lint/pylint/report.json -o docs/lint/pylint/index.html
 
 complexity: stage
 	wily build awstaga/
@@ -49,9 +49,9 @@ test:
 	pytest -v tests --html=docs/test/pytest/index.html --self-contained-html
 
 test-integration:
-	examples/run.sh
-	#rm -rf stage/test-integration/ && mkdir -p stage/test-integration/
-	#python3 -m unittest tests-integration/*.py
+	rm -rf stage/test-integration/ && mkdir -p stage/test-integration/
+	python3 -m unittest tests-integration/*.py
+	examples/cli.sh
 
 coverage:
 	COVERAGE_FILE=.coverage.unit coverage run --source=./awstaga -m unittest discover -s tests

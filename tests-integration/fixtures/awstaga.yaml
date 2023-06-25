@@ -12,6 +12,5 @@ resources:
     tags:
       - key: test-key
         value: test-value
-    tagsets:
+    tagsetnames:
       - test-tagset
-```
