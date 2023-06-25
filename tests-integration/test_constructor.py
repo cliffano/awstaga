@@ -1,7 +1,7 @@
 # pylint: disable=missing-module-docstring,missing-class-docstring,missing-function-docstring,duplicate-code,too-many-locals
 import os
-import botocore
 import unittest
+import botocore
 from awstaga import apply
 
 class TestConstructor(unittest.TestCase):
