@@ -13,7 +13,7 @@ with open(readme_file, 'r', encoding='utf8') as readme_fh:
 
 setuptools.setup(
     name='awstaga',
-    description='Python CLI for tagging AWS resources configured in YAML file',
+    description='Python CLI for tagging AWS resources off a YAML configuration',
     version=sic(info['version']),
     author='Cliffano Subagio',
     author_email='cliffano@gmail.com',
@@ -38,7 +38,7 @@ setuptools.setup(
     install_requires=[
         'boto3==1.26.155',
         'click==8.1.3',
-        'conflog==1.3.0',
+        'conflog==1.4.0',
         'PyYAML==6.0'
     ],
 )
