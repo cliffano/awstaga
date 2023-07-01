@@ -10,10 +10,10 @@ awstaga
 
 echo "\n\n========================================"
 echo "Run command with specified config file:"
-echo "awstaga --conf-file examples/awstaga.yaml"
-awstaga --conf-file examples/awstaga.yaml
+echo "awstaga --conf-file awstaga.yaml"
+awstaga --conf-file awstaga.yaml
 
 echo "\n\n========================================"
 echo "Run command with specified config file and AWS_DEFAULT_REGION env var:"
-echo "AWS_DEFAULT_REGION=ap-southeast-2 awstaga --conf-file examples/awstaga.yaml"
-AWS_DEFAULT_REGION=ap-southeast-2 awstaga --conf-file examples/awstaga.yaml
+echo "AWS_DEFAULT_REGION=ap-southeast-2 awstaga --conf-file awstaga.yaml"
+AWS_DEFAULT_REGION=ap-southeast-2 awstaga --conf-file awstaga.yaml
