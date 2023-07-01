@@ -61,7 +61,7 @@ test:
 test-integration:
 	rm -rf stage/test-integration/ && mkdir -p stage/test-integration/
 	python3 -m unittest tests-integration/*.py
-	cd examples/ && python3 log.py
+	cd examples/ && ./cli.sh
 
 coverage:
 	COVERAGE_FILE=.coverage.unit coverage run --source=./awstaga -m unittest discover -s tests
