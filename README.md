@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/cliffano/awstaga/workflows/CI/badge.svg)](https://github.com/cliffano/awstaga/actions?query=workflow%3ACI)
 [![Vulnerabilities Status](https://snyk.io/test/github/cliffano/awstaga/badge.svg)](https://snyk.io/test/github/cliffano/awstaga)
-[![Published Version](https://img.shields.io/pypi/v/conflog.svg)](https://pypi.python.org/pypi/conflog)
+[![Published Version](https://img.shields.io/pypi/v/awstaga.svg)](https://pypi.python.org/pypi/awstaga)
 <br/>
 
 Awstaga
@@ -62,7 +62,7 @@ And then run `awstaga` CLI and pass the configuration file path:
 
     awstaga --conf-file awstaga.yaml
 
-It will write the log messages to stdout and file `awstaga.log`:
+It will write the log messages to stdout:
 
     [TODO]TODO
 
