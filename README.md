@@ -64,7 +64,11 @@ And then run `awstaga` CLI and pass the configuration file path:
 
 It will write the log messages to stdout:
 
-    [TODO]TODO
+    [awstaga] INFO Loading configuration file awstaga.yaml
+    [awstaga] INFO Loading 3 tagset(s)...
+    [awstaga] INFO Loading 2 resource(s)...
+    [awstaga] INFO Updating resource arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'High availability SSM document'}
+    [awstaga] INFO Updating resource arn:aws:s3:::world-enterprise/development/logo.jpg with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'World Enterprise logo'}
 
 Configuration
 -------------
@@ -76,13 +80,13 @@ Configuration properties:
 | `tagsets[]` | Array | A list of one or more tagsets. Any tagset can be associated with any resource, and the resource will include the tags specified in the tagset. | |
 | `tagsets[].name` | String | The name of the tagset. | `common` |
 | `tagsets[].tags[]` | Array | A list of one or more key-value pair tags within the tagset. | |
-| `tagsets[].tags[].key` | String | The tag key. | `TODO` |
-| `tagsets[].tags[].value` | String | The tag value. | `TODO` |
-| `resources[]` | Array | A list of one or more AWS resources. Each of the resource has a corresponding list of tags, along with the tags from tagsets. | `TODO` |
+| `tagsets[].tags[].key` | String | The tag key. | `CostCentre` |
+| `tagsets[].tags[].value` | String | The tag value. | `FIN-123` |
+| `resources[]` | Array | A list of one or more AWS resources. Each of the resource has a corresponding list of tags, along with the tags from tagsets. | |
 | `resources[].arn` | String | AWS resource [ARN](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference-arns.html). | `arn:aws:s3:::world-enterprise/development/logo.jpg` |
 | `resources[].tags[]` | Array | A list of one or more key-value pair tags of the resource. | |
-| `resources[].tags[].key` | String | The tag key. | `CostCentre` |
-| `resources[].tags[].value` | String | The tag value. | `FIN-123` |
+| `resources[].tags[].key` | String | The tag key. | `Description` |
+| `resources[].tags[].value` | String | The tag value. | `Some description` |
 | `resources[].tagsetnames[]` | Array | A list of one or more tagset names. All tags within the tagsets specified are included in the resource. | |
 
 Colophon
