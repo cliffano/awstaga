@@ -72,7 +72,7 @@ Configuration
 Configuration properties:
 
 | Property | Type | Description | Example |
-| -------- | ----------- | ------- |
+|----------|------|-------------|---------|
 | `tagsets[]` | Array | A list of one or more tagsets. Any tagset can be associated with any resource, and the resource will include the tags specified in the tagset. | |
 | `tagsets[].name` | String | The name of the tagset. | `common` |
 | `tagsets[].tags[]` | Array | A list of one or more key-value pair tags within the tagset. | |
