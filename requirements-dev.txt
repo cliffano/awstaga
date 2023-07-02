@@ -4,6 +4,7 @@ pylint-report==2.4.0
 pytest==7.3.1
 pytest-html==3.2.0
 Sphinx==6.2.1
+twine==4.0.2
 wheel==0.40.0
 wily==1.24.0
 yq==3.2.2
