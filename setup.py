@@ -39,6 +39,6 @@ setuptools.setup(
         'boto3==1.26.155',
         'click==8.1.3',
         'conflog==1.4.0',
-        'PyYAML==6.0'
+        'PyYAML==6.0.1'
     ],
 )

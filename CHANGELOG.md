@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix installation error with Cython 3.0.0a10 via PyYAML 6.0.1 upgrade
+
 ## 0.10.1 - 2023-07-02
 ### Fixed
 - Fix missing twine publish dependency
