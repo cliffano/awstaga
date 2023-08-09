@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Unreleased
 
 ## 0.10.1 - 2023-07-02
+### Fixed
+- Fix missing twine publish dependency
 
 ## 0.10.0 - 2023-07-02
 ### Added
