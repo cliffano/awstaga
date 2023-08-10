@@ -38,7 +38,7 @@ setuptools.setup(
     install_requires=[
         'boto3==1.26.155',
         'click==8.1.3',
-        'conflog==1.5.0',
+        'conflog==1.5.1',
         'PyYAML==6.0.1'
     ],
 )
