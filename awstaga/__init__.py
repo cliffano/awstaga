@@ -45,7 +45,6 @@ def apply(conf_file: str) -> None:
 # @click.option('--force', default=False,
 # help='When force is enabled, all tags are applied, existing tags are overwritten')
 def cli(conf_file: str) -> None:
-    """CLI entry point for applying tags to AWS resources
-    based on configuration file.
+    """Python CLI for tagging AWS resources based on a YAML configuration.
     """
     apply(conf_file)
