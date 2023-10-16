@@ -2,7 +2,7 @@ export POETRY_HOME := /opt/poetry
 export VIRTUAL_ENV := /opt/poetry-venv
 export PATH := ${VIRTUAL_ENV}/bin:${POETRY_HOME}/bin:$(PATH)
 
-ci: clean deps-extra deps lint test coverage complexity doc package reinstall test-integration
+ci: clean deps lint test coverage complexity doc package reinstall test-integration
 
 # Exclude complexity due to complexity requiring no uncommited local change
 dev: clean deps-extra deps lint test coverage doc package reinstall test-integration
