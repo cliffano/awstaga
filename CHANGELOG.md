@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Use Poetry to manage project
+- Switch dependency versioning to allow compatible with version
+
 ## 0.11.0 - 2023-08-10
 ### Changed
 - Upgrade conflog to 1.5.1

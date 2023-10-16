@@ -1,10 +1,10 @@
 {
   "resources": [
     {
-      "path": "conf/info.yaml",
-      "type": "yaml",
+      "path": "pyproject.toml",
+      "type": "toml",
       "params": {
-        "property": "version"
+        "property": "tool.poetry.version"
       }
     },
     {
