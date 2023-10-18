@@ -21,9 +21,9 @@ classifiers = [
   "License :: OSI Approved :: Apache Software License",
   "Operating System :: OS Independent"
 ]
-
-[tool.poetry.packages]
-include = "awstaga"
+packages = [
+    { include = "awstaga" }
+]
 
 [tool.poetry.scripts]
 awstaga = "awstaga:cli"
