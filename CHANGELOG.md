@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Removed
+- Remove unused certifi dependency
+
 ## 0.12.0 - 2023-10-18
 ### Changed
 - Use Poetry to manage project

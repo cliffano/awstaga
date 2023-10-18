@@ -22,19 +22,18 @@ classifiers = [
   "Operating System :: OS Independent"
 ]
 
-  [[tool.poetry.packages]]
-  include = "awstaga"
+[tool.poetry.packages]
+include = "awstaga"
 
-  [tool.poetry.scripts]
-  awstaga = "awstaga:cli"
+[tool.poetry.scripts]
+awstaga = "awstaga:cli"
 
-  [tool.poetry.dependencies]
-  python = "^3.8"
-  boto3 = "^1.26.155"
-  click = "^8.1.3"
-  conflog = "^1.5.1"
-  PyYAML = "^6.0.1"
-  certifi = "2023.7.22"
+[tool.poetry.dependencies]
+python = "^3.8"
+boto3 = "^1.26.155"
+click = "^8.1.3"
+conflog = "^1.5.1"
+PyYAML = "^6.0.1"
 
 [tool.poetry.group.dev.dependencies]
 twine = "4.0.2"
