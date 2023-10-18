@@ -1,40 +1,40 @@
 [build-system]
-requires = ["poetry-core"]
+requires = [ "poetry-core" ]
 build-backend = "poetry.core.masonry.api"
 
 [installer]
-no-binary = [":none:"]
+no-binary = [ ":none:" ]
 
 [tool.poetry]
 name = "awstaga"
-version = "0.11.1-pre.0"
+version = "0.12.0"
 description = "Python CLI for tagging AWS resources based on a YAML configuration"
 license = "Apache-2.0"
-authors = ["Cliffano Subagio <cliffano@gmail.com>"]
+authors = [ "Cliffano Subagio <cliffano@gmail.com>" ]
 readme = "README.md"
 homepage = "https://github.com/cliffano/awstaga"
 repository = "https://github.com/cliffano/awstaga"
 documentation = "https://github.com/cliffano/awstaga"
-keywords = ["awstaga", "aws", "tag", "tagging"]
+keywords = [ "awstaga", "aws", "tag", "tagging" ]
 classifiers = [
   "Programming Language :: Python :: 3",
   "License :: OSI Approved :: Apache Software License",
   "Operating System :: OS Independent"
 ]
-packages = [
-  { include = "awstaga" }
-]
 
-[tool.poetry.scripts]
-awstaga = 'awstaga:cli'
+  [[tool.poetry.packages]]
+  include = "awstaga"
 
-[tool.poetry.dependencies]
-python = "^3.8"
-boto3 = "^1.26.155"
-click = "^8.1.3"
-conflog = "^1.5.1"
-PyYAML = "^6.0.1"
-certifi = "2023.7.22" # https://github.com/python-poetry/poetry/issues/5977
+  [tool.poetry.scripts]
+  awstaga = "awstaga:cli"
+
+  [tool.poetry.dependencies]
+  python = "^3.8"
+  boto3 = "^1.26.155"
+  click = "^8.1.3"
+  conflog = "^1.5.1"
+  PyYAML = "^6.0.1"
+  certifi = "2023.7.22"
 
 [tool.poetry.group.dev.dependencies]
 twine = "4.0.2"
