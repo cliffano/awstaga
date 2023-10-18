@@ -32,15 +32,12 @@ doc: stage
 # we have to massage the version number in conf/info.yaml before and after rtk release.
 release-major:
 	rtk release --release-increment-type major
-	git commit conf/info.yaml -m "Switch version to Python setuptools versioning scheme"
 
 release-minor:
 	rtk release --release-increment-type minor
-	git commit conf/info.yaml -m "Switch version to Python setuptools versioning scheme"
 
 release-patch:
 	rtk release --release-increment-type patch
-	git commit conf/info.yaml -m "Switch version to Python setuptools versioning scheme"
 
 lint: stage
 	mkdir -p stage/lint/pylint/ docs/lint/pylint/
