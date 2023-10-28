@@ -50,7 +50,7 @@ class TestConfig(unittest.TestCase):
 
         func_init.return_value = mock_logger
 
-        tagsets, resources = load('awstaga.yaml')
+        tagsets, resources = load('awstaga.yaml', False)
         tagset = tagsets['test-tagset']
         self.assertEqual(tagset.get_name(), 'test-tagset')
 
@@ -96,7 +96,7 @@ class TestConfig(unittest.TestCase):
 
         func_init.return_value = mock_logger
 
-        tagsets, resources = load('awstaga.yaml')
+        tagsets, resources = load('awstaga.yaml', False)
         self.assertEqual(tagsets, {})
         self.assertEqual(resources, [])
 
@@ -111,7 +111,7 @@ class TestConfig(unittest.TestCase):
         with open('awstaga.yaml', 'r', encoding='utf8') as file_handle:
             assert file_handle.read() == CONFIG_EMPTY
 
-        tagsets, resources = load('awstaga.yaml')
+        tagsets, resources = load('awstaga.yaml', False)
         self.assertEqual(tagsets, {})
         self.assertEqual(resources, [])
 
@@ -120,4 +120,4 @@ class TestConfig(unittest.TestCase):
         with open('awstaga.yaml', 'r', encoding='utf8') as file_handle:
             assert file_handle.read() == CONFIG_INVALID
         with self.assertRaises(yaml.scanner.ScannerError):
-            load('awstaga.yaml')
+            load('awstaga.yaml', False)

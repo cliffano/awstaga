@@ -70,6 +70,17 @@ It will write the log messages to stdout:
     [awstaga] INFO Updating resource arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'High availability SSM document'}
     [awstaga] INFO Updating resource arn:aws:s3:::world-enterprise/development/logo.jpg with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'World Enterprise logo'}
 
+You can run Awstaga in dry-run mode by adding `--dry-run` flag:
+
+    awstaga --conf-file awstaga.yaml --dry-run
+
+During dry-run mode, Awstaga log messages will be labeled with `[dry-run]`:
+
+    [dry-run] [awstaga] INFO Loading configuration file awstaga.yaml
+    [dry-run] [awstaga] INFO Loading 3 tagset(s)...
+    [dry-run] [awstaga] INFO Loading 2 resource(s)...
+    [dry-run] [awstaga] INFO Updating resource arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'High availability SSM document'}
+
 Configuration
 -------------
 

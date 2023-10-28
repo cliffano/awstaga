@@ -8,11 +8,11 @@ from .models.tag import Tag
 from .models.tagset import TagSet
 from .logger import init
 
-def load(conf_file: str) -> Tuple[dict, list]:
+def load(conf_file: str, dry_run: bool) -> Tuple[dict, list]:
     """Load configuration values from file.
     """
 
-    logger = init()
+    logger = init(dry_run)
 
     tagsets = {}
     resources = []
