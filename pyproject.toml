@@ -42,7 +42,7 @@ yq = "3.2.2"
 
 [tool.poetry.group.test.dependencies]
 coverage = "7.2.4"
-pylint = "2.17.3"
+pylint = "3.0.1"
 pytest = "7.3.1"
 wily = "1.24.0"
 
