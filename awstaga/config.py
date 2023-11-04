@@ -50,11 +50,20 @@ def _load_resources(logger, resources: list, resources_conf: list) -> None:
     for resource in resources_conf:
         arn = resource['arn']
         tags = []
-        for tag in resource['tags']:
-            tags.append(Tag(tag['key'], tag['value']))
+        if 'tags' in resource:
+            for tag in resource['tags']:
+                tags.append(Tag(tag['key'], tag['value']))
         tagset_names = []
-        for tagsetname in resource['tagsetnames']:
-            tagset_names.append(tagsetname)
-        logger.debug(f'Loaded resource {arn} with '\
-                     f'tags {*tags,} and tagsetnames {*tagset_names,}')
+        if 'tagsetnames' in resource:
+            for tagsetname in resource['tagsetnames']:
+                tagset_names.append(tagsetname)
+        if tags and tagset_names:
+            logger.debug(f'Loaded resource {arn} with '\
+                        f'tags {*tags,} and tagsetnames {*tagset_names,}')
+        elif tags and not tagset_names:
+            logger.debug(f'Loaded resource {arn} with '\
+                        f'tags {*tags,}')
+        elif not tags and tagset_names:
+            logger.debug(f'Loaded resource {arn} with '\
+                        f'tagsetnames {*tagset_names,}')
         resources.append(Resource(arn, tags, tagset_names))

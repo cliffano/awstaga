@@ -1,0 +1,7 @@
+---
+resources:
+  - arn: test-resource
+    type: aws_instance
+    tags:
+      - key: test-key
+        value: test-value
