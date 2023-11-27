@@ -16,7 +16,6 @@ tagsets:
         value: test-value2
 resources:
   - arn: test-resource-arn
-    type: aws_instance
     tags:
       - key: test-key
         value: test-value
@@ -35,7 +34,6 @@ tagsets:
         value: test-value2
 resources:
   - arn: test-resource-arn
-    type: aws_instance
     tagsetnames:
       - test-tagset
 '''
@@ -51,7 +49,6 @@ tagsets:
         value: test-value2
 resources:
   - arn: test-resource-arn
-    type: aws_instance
     tags:
       - key: test-key
         value: test-value
@@ -61,7 +58,6 @@ CONFIG_WITH_PROPERTIES_WITHOUT_TAGSETS = '''
 ---
 resources:
   - arn: test-resource-arn
-    type: aws_instance
     tags:
       - key: test-key
         value: test-value
@@ -87,35 +83,30 @@ tags:
 CONFIG_INCLUDE_RESOURCES = '''
 ---
 - arn: test-resource-1a
-  type: aws_instance
   tags:
     - key: test-key
       value: test-value-1a
   tagsetnames:
     - test-tagset
 - arn: test-resource-1b
-  type: aws_instance
   tags:
     - key: test-key
       value: test-value-1b
   tagsetnames:
     - test-tagset
 - arn: test-resource-2a
-  type: aws_instance
   tags:
     - key: test-key
       value: test-value-2a
   tagsetnames:
     - test-tagset
 - arn: test-resource-2b
-  type: aws_instance
   tags:
     - key: test-key
       value: test-value-2b
   tagsetnames:
     - test-tagset
 - arn: test-resource-2c
-  type: aws_instance
   tags:
     - key: test-key
       value: test-value-2c

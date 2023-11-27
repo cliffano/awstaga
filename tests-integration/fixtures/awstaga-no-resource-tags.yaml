@@ -8,6 +8,5 @@ tagsets:
         value: test-value2
 resources:
   - arn: test-resource
-    type: aws_instance
     tagsetnames:
       - test-tagset
