@@ -20,33 +20,33 @@ class TestConstructor(unittest.TestCase):
     def test_constructor_without_aws_region(self):
         # should raise no region error
         with self.assertRaises(botocore.exceptions.NoRegionError):
-            apply('tests-integration/fixtures/awstaga.yaml', False)
+            apply('examples/awstaga.yaml', False)
 
     def test_constructor_with_config_not_having_resource_tags(self):
         # should raise no region error
         with self.assertRaises(botocore.exceptions.NoRegionError):
-            apply('tests-integration/fixtures/awstaga-no-resource-tags.yaml', False)
+            apply('examples/awstaga-no-resource-tags.yaml', False)
 
     def test_constructor_with_config_not_having_resource_tagsetnames(self):
         # should raise no region error
         with self.assertRaises(botocore.exceptions.NoRegionError):
-            apply('tests-integration/fixtures/awstaga-no-resource-tagsetnames.yaml', False)
+            apply('examples/awstaga-no-resource-tagsetnames.yaml', False)
 
     def test_constructor_with_config_not_having_tagsets(self):
         # should raise no region error
         with self.assertRaises(botocore.exceptions.NoRegionError):
-            apply('tests-integration/fixtures/awstaga-no-tagsets.yaml', False)
+            apply('examples/awstaga-no-tagsets.yaml', False)
 
     def test_constructor_with_config_having_includes(self):
         # should raise no region error
         with self.assertRaises(botocore.exceptions.NoRegionError):
-            apply('tests-integration/fixtures/awstaga-with-includes.yaml', False)
+            apply('examples/awstaga-with-includes.yaml', False)
 
     def test_constructor_with_aws_region_without_keys(self):
         os.environ['AWS_DEFAULT_REGION'] = 'ap-southeast-2'
         # should raise client error
         with self.assertRaises(botocore.exceptions.ClientError):
-            apply('tests-integration/fixtures/awstaga.yaml', False)
+            apply('examples/awstaga.yaml', False)
 
     def test_constructor_with_aws_region_with_invalid_keys(self):
         os.environ['AWS_DEFAULT_REGION'] = 'ap-southeast-2'
@@ -54,4 +54,4 @@ class TestConstructor(unittest.TestCase):
         os.environ['AWS_SECRET_ACCESS_KEY'] = 'somesecretaccesskey'
         # should raise client error
         with self.assertRaises(botocore.exceptions.ClientError):
-            apply('tests-integration/fixtures/awstaga.yaml', False)
+            apply('examples/awstaga.yaml', False)
