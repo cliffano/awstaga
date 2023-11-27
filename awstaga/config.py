@@ -2,7 +2,9 @@
 """
 
 from typing import Tuple
+import os
 import yaml
+from yamlinclude import YamlIncludeConstructor
 from .models.resource import Resource
 from .models.tag import Tag
 from .models.tagset import TagSet
@@ -13,11 +15,15 @@ def load(conf_file: str, dry_run: bool) -> Tuple[dict, list]:
     """
 
     logger = init(dry_run)
+    YamlIncludeConstructor.add_to_loader_class(
+        loader_class=yaml.FullLoader,
+        base_dir=os.path.dirname(conf_file)
+    )
 
     tagsets = {}
     resources = []
     with open(conf_file, 'r', encoding='utf-8') as stream:
-        conf_yaml = yaml.safe_load(stream)
+        conf_yaml = yaml.load(stream, Loader=yaml.FullLoader)
         if conf_yaml is not None:
             for key, value in conf_yaml.items():
 

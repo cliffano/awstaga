@@ -67,6 +67,62 @@ resources:
         value: test-value
 '''
 
+CONFIG_WITH_PROPERTIES_HAVING_INCLUDES = '''
+---
+tagsets:
+  - !include include.d/tagset.yaml
+resources: !include include.d/resources.yaml
+'''
+
+CONFIG_INCLUDE_TAGSET = '''
+---
+name: test-tagset
+tags:
+  - key: test-key
+    value: test-value
+  - key: test-key2
+    value: test-value2
+'''
+
+CONFIG_INCLUDE_RESOURCES = '''
+---
+- arn: test-resource-1a
+  type: aws_instance
+  tags:
+    - key: test-key
+      value: test-value-1a
+  tagsetnames:
+    - test-tagset
+- arn: test-resource-1b
+  type: aws_instance
+  tags:
+    - key: test-key
+      value: test-value-1b
+  tagsetnames:
+    - test-tagset
+- arn: test-resource-2a
+  type: aws_instance
+  tags:
+    - key: test-key
+      value: test-value-2a
+  tagsetnames:
+    - test-tagset
+- arn: test-resource-2b
+  type: aws_instance
+  tags:
+    - key: test-key
+      value: test-value-2b
+  tagsetnames:
+    - test-tagset
+- arn: test-resource-2c
+  type: aws_instance
+  tags:
+    - key: test-key
+      value: test-value-2c
+  tagsetnames:
+    - test-tagset
+'''
+
 CONFIG_WITHOUT_VALUES = '''
 ---
 tagsets:
@@ -254,6 +310,53 @@ class TestConfig(unittest.TestCase):
                  "(test-key=test-value,)")
         ])
 
+    @patch('builtins.open', new_callable=mock_open)
+    @patch('awstaga.config.init')
+    def test_load_with_properties_having_includes(self, func_init, func_open): # pylint: disable=unused-argument
+        func_open.side_effect = [
+            _mock_file(CONFIG_WITH_PROPERTIES_HAVING_INCLUDES),
+            _mock_file(CONFIG_INCLUDE_RESOURCES),
+            _mock_file(CONFIG_INCLUDE_TAGSET)
+        ]
+
+        tagsets, resources = load('awstaga.yaml', False)
+        tagset = tagsets['test-tagset']
+        self.assertEqual(tagset.get_name(), 'test-tagset')
+
+        tags = tagset.get_tags()
+        self.assertEqual(len(tags), 2)
+        self.assertEqual(tags[0].get_key(), 'test-key')
+        self.assertEqual(tags[0].get_value(), 'test-value')
+        self.assertEqual(tags[1].get_key(), 'test-key2')
+        self.assertEqual(tags[1].get_value(), 'test-value2')
+        self.assertEqual(len(resources), 5)
+        self.assertEqual(resources[0].get_arn(), 'test-resource-1a')
+        self.assertEqual(len(resources[0].get_tags()), 1)
+        self.assertEqual(resources[0].get_tags()[0].get_key(), 'test-key')
+        self.assertEqual(resources[0].get_tags()[0].get_value(), 'test-value-1a')
+        self.assertEqual(len(resources[0].get_tagset_names()), 1)
+        self.assertEqual(resources[0].get_tagset_names()[0], 'test-tagset')
+        self.assertEqual(resources[1].get_arn(), 'test-resource-1b')
+        self.assertEqual(resources[1].get_tags()[0].get_key(), 'test-key')
+        self.assertEqual(resources[1].get_tags()[0].get_value(), 'test-value-1b')
+        self.assertEqual(len(resources[1].get_tagset_names()), 1)
+        self.assertEqual(resources[1].get_tagset_names()[0], 'test-tagset')
+        self.assertEqual(resources[2].get_arn(), 'test-resource-2a')
+        self.assertEqual(resources[2].get_tags()[0].get_key(), 'test-key')
+        self.assertEqual(resources[2].get_tags()[0].get_value(), 'test-value-2a')
+        self.assertEqual(len(resources[2].get_tagset_names()), 1)
+        self.assertEqual(resources[2].get_tagset_names()[0], 'test-tagset')
+        self.assertEqual(resources[3].get_arn(), 'test-resource-2b')
+        self.assertEqual(resources[3].get_tags()[0].get_key(), 'test-key')
+        self.assertEqual(resources[3].get_tags()[0].get_value(), 'test-value-2b')
+        self.assertEqual(len(resources[3].get_tagset_names()), 1)
+        self.assertEqual(resources[3].get_tagset_names()[0], 'test-tagset')
+        self.assertEqual(resources[4].get_arn(), 'test-resource-2c')
+        self.assertEqual(resources[4].get_tags()[0].get_key(), 'test-key')
+        self.assertEqual(resources[4].get_tags()[0].get_value(), 'test-value-2c')
+        self.assertEqual(len(resources[4].get_tagset_names()), 1)
+        self.assertEqual(resources[4].get_tagset_names()[0], 'test-tagset')
+
     @patch('builtins.open', new_callable=mock_open, read_data=CONFIG_WITHOUT_VALUES)
     @patch('awstaga.config.init')
     def test_load_without_values(self, func_init, func_open): # pylint: disable=unused-argument
@@ -289,3 +392,8 @@ class TestConfig(unittest.TestCase):
             assert file_handle.read() == CONFIG_INVALID
         with self.assertRaises(yaml.scanner.ScannerError):
             load('awstaga.yaml', False)
+
+def _mock_file(file_content):
+    mock = mock_open(read_data=file_content)
+    mock.return_value.__iter__ = lambda self: iter(self.readline, b'')
+    return mock.return_value

@@ -37,6 +37,11 @@ class TestConstructor(unittest.TestCase):
         with self.assertRaises(botocore.exceptions.NoRegionError):
             apply('tests-integration/fixtures/awstaga-no-tagsets.yaml', False)
 
+    def test_constructor_with_config_having_includes(self):
+        # should raise no region error
+        with self.assertRaises(botocore.exceptions.NoRegionError):
+            apply('tests-integration/fixtures/awstaga-with-includes.yaml', False)
+
     def test_constructor_with_aws_region_without_keys(self):
         os.environ['AWS_DEFAULT_REGION'] = 'ap-southeast-2'
         # should raise client error

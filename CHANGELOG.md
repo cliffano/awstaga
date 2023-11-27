@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add dry-run support
 - Add Python 3.12 support
+- Add YAML-include support #2
 
 ### Changed
 - Allow tagsets, resource tags, and resource tagsetnames to be optional #1

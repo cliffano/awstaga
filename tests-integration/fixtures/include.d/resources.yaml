@@ -1,0 +1,36 @@
+---
+- arn: test-resource-1a
+  type: aws_instance
+  tags:
+    - key: test-key
+      value: test-value-1a
+  tagsetnames:
+    - test-tagset
+- arn: test-resource-1b
+  type: aws_instance
+  tags:
+    - key: test-key
+      value: test-value-1b
+  tagsetnames:
+    - test-tagset
+- arn: test-resource-2a
+  type: aws_instance
+  tags:
+    - key: test-key
+      value: test-value-2a
+  tagsetnames:
+    - test-tagset
+- arn: test-resource-2b
+  type: aws_instance
+  tags:
+    - key: test-key
+      value: test-value-2b
+  tagsetnames:
+    - test-tagset
+- arn: test-resource-2c
+  type: aws_instance
+  tags:
+    - key: test-key
+      value: test-value-2c
+  tagsetnames:
+    - test-tagset

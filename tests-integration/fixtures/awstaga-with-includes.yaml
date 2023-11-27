@@ -1,0 +1,4 @@
+---
+tagsets:
+  - !include include.d/tagset.yaml
+resources: !include include.d/resources.yaml

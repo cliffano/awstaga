@@ -57,7 +57,7 @@ Create a configuration file, e.g. `awstaga.yaml`:
         tagsetnames:
           - common
           - nonprod
- 
+
 And then run `awstaga` CLI and pass the configuration file path:
 
     awstaga --conf-file awstaga.yaml
@@ -80,6 +80,45 @@ During dry-run mode, Awstaga log messages will be labeled with `[dry-run]`:
     [dry-run] [awstaga] INFO Loading 3 tagset(s)...
     [dry-run] [awstaga] INFO Loading 2 resource(s)...
     [dry-run] [awstaga] INFO Updating resource arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'High availability SSM document'}
+
+Awstaga supports YAML-include, so you can split your configuration into multiple files:
+
+    ---
+    tagsets:
+      - !include include.d/tagset.yaml
+    resources: !include include.d/resources.yaml
+
+Include files should be put under `include.d/`` folder relative to the configuration file.
+
+The included tagset file `include.d/tagset.yaml`:
+
+    ---
+    name: common
+    tags:
+      - key: CostCentre
+        value: FIN-123
+      - key: Organisation
+        value: World Enterprise
+      - key: Description
+        value: AWS Resource
+
+The included resources file `include.d/resources.yaml`:
+
+    ---
+    - arn: 'arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail'
+      tags:
+        - key: Description
+          value: High availability SSM document
+      tagsetnames:
+        - common
+        - prod
+    - arn: 'arn:aws:s3:::world-enterprise/development/logo.jpg'
+      tags:
+        - key: Description
+          value: World Enterprise logo
+      tagsetnames:
+        - common
+        - nonprod
 
 Configuration
 -------------

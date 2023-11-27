@@ -1,0 +1,7 @@
+---
+name: test-tagset
+tags:
+  - key: test-key
+    value: test-value
+  - key: test-key2
+    value: test-value2
