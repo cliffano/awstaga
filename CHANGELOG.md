@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - Remove unused certifi dependency
+- Remove dev Makefile target now that poetry.lock is ignored
 
 ## 0.12.0 - 2023-10-18
 ### Changed

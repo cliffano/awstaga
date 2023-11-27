@@ -4,9 +4,6 @@ export PATH := ${VIRTUAL_ENV}/bin:${POETRY_HOME}/bin:$(PATH)
 
 ci: clean deps lint test coverage complexity doc package reinstall test-integration
 
-# Exclude complexity due to complexity requiring no uncommited local change
-dev: clean deps-extra deps lint test coverage doc package reinstall test-integration
-
 clean:
 	rm -rf stage *.lock *.egg-info build dist docs/ awstaga/_pycache_/ awstaga/*.pyc tests/_pycache_/ tests/*.pyc .coverage
 
@@ -79,4 +76,4 @@ package:
 publish:
 	poetry publish --username __token__ --password $(PASSWORD)
 
-.PHONY: ci dev clean stage deps deps-extra doc release lint complexity test test-integration coverage install uninstall reinstall package publish
+.PHONY: ci clean stage deps deps-extra doc release lint complexity test test-integration coverage install uninstall reinstall package publish
