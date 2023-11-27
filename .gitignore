@@ -1,7 +1,7 @@
 # Start of Studio gitignore
 docs/
 stage/
-poetry.lock
+# poetry.lock
 # End of Studio gitignore
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,visualstudiocode,python
