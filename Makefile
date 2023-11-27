@@ -43,8 +43,10 @@ lint: stage
 	pylint_report stage/lint/pylint/report.json -o docs/lint/pylint/index.html
 
 complexity: stage
+	mv poetry.lock /tmp/
 	wily build awstaga/
 	wily report docs/complexity/wily/index.html
+	mv /tmp/poetry.lock ./
 
 test:
 	pytest -v tests --html=docs/test/pytest/index.html --self-contained-html
