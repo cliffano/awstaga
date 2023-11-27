@@ -5,7 +5,7 @@ export PATH := ${VIRTUAL_ENV}/bin:${POETRY_HOME}/bin:$(PATH)
 ci: clean deps lint test coverage complexity doc package reinstall test-integration
 
 clean:
-	rm -rf stage *.lock *.egg-info build dist docs/ awstaga/_pycache_/ awstaga/*.pyc tests/_pycache_/ tests/*.pyc .coverage
+	rm -rf stage *.lock *.egg-info build dist docs/ awstaga/_pycache_/ awstaga/*.pyc tests/_pycache_/ tests/*.pyc .coverage ~/.wily/ .pytest_cache/ .tox/ .mypy_cache/ .coverage.*
 
 stage:
 	mkdir -p stage stage/ docs/
