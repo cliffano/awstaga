@@ -7,7 +7,7 @@ no-binary = [ ":none:" ]
 
 [tool.poetry]
 name = "awstaga"
-version = "1.0.1-pre.0"
+version = "1.1.0"
 description = "Python CLI for tagging AWS resources based on a YAML configuration"
 license = "Apache-2.0"
 authors = [ "Cliffano Subagio <cliffano@gmail.com>" ]
