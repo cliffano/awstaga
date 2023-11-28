@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add batch tagging support
+- Add --batch-size flag to CLI
+
 ## 1.0.0 - 2023-11-27
 ### Added
 - Add dry-run support

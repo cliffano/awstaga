@@ -24,3 +24,8 @@ echo "\n\n========================================"
 echo "Run command with specified config file in dry-run mode:"
 echo "awstaga --conf-file awstaga.yaml --dry-run"
 awstaga --conf-file awstaga.yaml --dry-run
+
+echo "\n\n========================================"
+echo "Run command with specified config file in dry-run mode with custom batch size:"
+echo "awstaga --conf-file awstaga.yaml --dry-run"
+awstaga --conf-file awstaga.yaml --dry-run --batch-size 50
