@@ -77,7 +77,7 @@ def apply(conf_file: str, dry_run: bool, batch_size: int) -> None:
               help='Configuration file path')
 @click.option('--dry-run', is_flag=True, default=False, show_default=True,
               help='When dry run is enabled, no tags are applied')
-@click.option('--batch-size', default=100, show_default=True,
+@click.option('--batch-size', default=20, show_default=True,
               help='Number of resources to tag in one go per batch')
 # @click.option('--force', default=False,
 # help='When force is enabled, all tags are applied, existing tags are overwritten')

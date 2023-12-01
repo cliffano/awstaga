@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix default batch size to 20
+
 ## 1.1.0 - 2023-11-28
 ### Added
 - Add batch tagging support

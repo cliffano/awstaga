@@ -120,7 +120,7 @@ The included resources file `include.d/resources.yaml`:
         - common
         - nonprod
 
-In order to optimise the number of API calls, the resources are put into batches depending on the tags. By default, the batch size is 100.
+In order to optimise the number of API calls, the resources are put into batches depending on the tags. By default, the batch size is 20.
 You can run Awstaga with a custom batch size `--batch-size <number>` flag:
 
     awstaga --conf-file awstaga.yaml --batch-size 50
