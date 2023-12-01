@@ -70,7 +70,9 @@ It will write the log messages to stdout:
     [awstaga] INFO Adding resource arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail to a batch with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'High availability SSM document'}
     [awstaga] INFO Adding resource arn:aws:s3:::world-enterprise/development/logo.jpg to a batch with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'World Enterprise logo'}
 
-You can run Awstaga in dry-run mode by adding `--dry-run` flag:
+### Dry run
+
+You can also run Awstaga in dry-run mode by adding `--dry-run` flag:
 
     awstaga --conf-file awstaga.yaml --dry-run
 
@@ -80,6 +82,8 @@ During dry-run mode, Awstaga log messages will be labeled with `[dry-run]`:
     [dry-run] [awstaga] INFO Loading 3 tagset(s)...
     [dry-run] [awstaga] INFO Loading 2 resource(s)...
     [dry-run] [awstaga] INFO Adding resource arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail to a batch with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'High availability SSM document'}
+
+### YAML includes
 
 Awstaga supports YAML includes using , so you can split your configuration into multiple files:
 
@@ -120,10 +124,12 @@ The included resources file `include.d/resources.yaml`:
         - common
         - nonprod
 
-In order to optimise the number of API calls, the resources are put into batches depending on the tags. By default, the batch size is 20.
+### Batch size
+
+In order to optimise the number of API calls, resources with identical tags are put into batches. By default, the batch size is 20.
 You can run Awstaga with a custom batch size `--batch-size <number>` flag:
 
-    awstaga --conf-file awstaga.yaml --batch-size 50
+    awstaga --conf-file awstaga.yaml --batch-size 10
 
 Configuration
 -------------
