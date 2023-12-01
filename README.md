@@ -128,7 +128,8 @@ You can run Awstaga with a custom batch size `--batch-size <number>` flag:
 Configuration
 -------------
 
-Configuration properties:
+These are the configuration properties that you can use with `awstaga` CLI.
+Some example configuration files are available on [examples](examples) folder.
 
 | Property | Type | Description | Example |
 |----------|------|-------------|---------|
