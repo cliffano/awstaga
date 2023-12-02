@@ -43,11 +43,11 @@ lint: stage
 	pylint_report docs/lint/pylint/report.json -o docs/lint/pylint/index.html
 
 complexity: stage
-	mv poetry.lock /tmp/
+	git stash
 	rm -rf docs/complexity/wily/ && mkdir -p docs/complexity/wily/
 	wily build awstaga/
 	wily report awstaga/*.py --format HTML > docs/complexity/wily/index.html
-	mv /tmp/poetry.lock ./
+	git stash apply
 
 test:
 	rm -rf docs/test/pytest/ && mkdir -p docs/test/pytest/
