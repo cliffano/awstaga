@@ -20,8 +20,8 @@ deps-extra:
 
 doc: stage
 	rm -rf docs/doc/sphinx/ && mkdir -p docs/doc/sphinx/
-	sphinx-apidoc -o stage/doc/sphinx/ --full -H "awstaga" -A "Cliffano Subagio" awstaga && \
-		cd stage/doc/sphinx/ && \
+	sphinx-apidoc -o docs/doc/sphinx/ --full -H "awstaga" -A "Cliffano Subagio" awstaga && \
+		cd docs/doc/sphinx/ && \
 		make html && \
 		cp -R _build/html/* ../../../docs/doc/sphinx/
 
@@ -37,10 +37,10 @@ release-patch:
 	rtk release --release-increment-type patch
 
 lint: stage
-	mkdir -p stage/lint/pylint/ docs/lint/pylint/
+	mkdir -p docs/lint/pylint/ docs/lint/pylint/
 	pylint awstaga/*.py awstaga/models/*.py tests/*.py tests/models/*.py tests-integration/*.py
-	pylint awstaga/*.py awstaga/models/*.py tests/*.py tests/models/*.py tests-integration/*.py --output-format=pylint_report.CustomJsonReporter > stage/lint/pylint/report.json
-	pylint_report stage/lint/pylint/report.json -o docs/lint/pylint/index.html
+	pylint awstaga/*.py awstaga/models/*.py tests/*.py tests/models/*.py tests-integration/*.py --output-format=pylint_report.CustomJsonReporter > docs/lint/pylint/report.json
+	pylint_report docs/lint/pylint/report.json -o docs/lint/pylint/index.html
 
 complexity: stage
 	mv poetry.lock /tmp/
@@ -52,7 +52,7 @@ test:
 	pytest -v tests --html=docs/test/pytest/index.html --self-contained-html
 
 test-integration:
-	rm -rf stage/test-integration/ && mkdir -p stage/test-integration/
+	rm -rf docs/test-integration/ && mkdir -p docs/test-integration/
 	python3 -m unittest tests-integration/*.py
 	cd examples/ && ./awstaga-cli.sh
 
