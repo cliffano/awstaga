@@ -44,15 +44,17 @@ lint: stage
 
 complexity: stage
 	mv poetry.lock /tmp/
+	rm -rf docs/complexity/wily/ && mkdir -p docs/complexity/wily/
 	wily build awstaga/
 	wily report docs/complexity/wily/index.html
 	mv /tmp/poetry.lock ./
 
 test:
+	rm -rf docs/test/pytest/ && mkdir -p docs/test/pytest/
 	pytest -v tests --html=docs/test/pytest/index.html --self-contained-html
 
 test-integration:
-	rm -rf docs/test-integration/ && mkdir -p docs/test-integration/
+	rm -rf docs/test-integration/unittest && mkdir -p docs/test-integration/unittest
 	python3 -m unittest tests-integration/*.py
 	cd examples/ && ./awstaga-cli.sh
 
