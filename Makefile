@@ -51,11 +51,11 @@ complexity: stage
 
 test:
 	rm -rf docs/test/pytest/ && mkdir -p docs/test/pytest/
-	pytest -v tests --html=docs/test/pytest/index.html --self-contained-html
+	pytest -v tests --html=docs/test/pytest/index.html --self-contained-html --capture=no
 
 test-integration:
-	rm -rf docs/test-integration/unittest && mkdir -p docs/test-integration/unittest
-	python3 -m unittest tests-integration/*.py
+	rm -rf docs/test-integration/pytest && mkdir -p docs/test-integration/pytest
+	pytest -v tests-integration --html=docs/test-integration/pytest/index.html --self-contained-html --capture=no
 	cd examples/ && ./awstaga-cli.sh
 
 coverage:
