@@ -72,7 +72,7 @@ uninstall:
 
 reinstall:
 	make uninstall || echo "Nothing to uninstall..."
-	make clean deps package install
+	make package install
 
 package:
 	poetry build
