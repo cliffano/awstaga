@@ -46,7 +46,7 @@ complexity: stage
 	git stash
 	rm -rf docs/complexity/wily/ && mkdir -p docs/complexity/wily/
 	wily build awstaga/
-	wily report awstaga/*.py --format HTML > docs/complexity/wily/index.html
+	wily report ~/.wily/ --format HTML --output docs/complexity/wily/index.html
 	git stash apply
 
 test:
