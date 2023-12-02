@@ -46,7 +46,7 @@ complexity: stage
 	mv poetry.lock /tmp/
 	rm -rf docs/complexity/wily/ && mkdir -p docs/complexity/wily/
 	wily build awstaga/
-	wily report docs/complexity/wily/index.html
+	wily report awstaga/*.py --format HTML > docs/complexity/wily/index.html
 	mv /tmp/poetry.lock ./
 
 test:
