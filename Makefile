@@ -47,8 +47,8 @@ complexity: stage
 	rm -rf docs/complexity/wily/ && mkdir -p docs/complexity/wily/
 	wily clean -y
 	wily build awstaga/
-	wily report --format HTML --output docs/complexity/wily/index.html
-	wily index
+	wily report --format HTML --output docs/complexity/wily/index.html awstaga/__init__.py
+	wily list-metrics
 	mv /tmp/poetry.lock poetry.lock || echo "No backup poetry.lock to restore..."
 
 test:
