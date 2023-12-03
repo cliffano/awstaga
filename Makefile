@@ -44,8 +44,9 @@ lint: stage
 
 complexity: stage
 	mv poetry.lock  /tmp/poetry.lock || echo "No poetry.lock to backup..."
-	rm -rf ~/.wily docs/complexity/wily/ && mkdir -p docs/complexity/wily/
-	wily build
+	rm -rf docs/complexity/wily/ && mkdir -p docs/complexity/wily/
+	wily clean -y
+	wily build awstaga/
 	wily report --format HTML --output docs/complexity/wily/index.html
 	wily index
 	mv /tmp/poetry.lock poetry.lock || echo "No backup poetry.lock to restore..."
