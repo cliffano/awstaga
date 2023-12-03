@@ -56,11 +56,12 @@ test:
 	pytest -v tests --html=docs/test/pytest/index.html --self-contained-html --capture=no
 
 test-integration:
-	rm -rf docs/test-integration/pytest && mkdir -p docs/test-integration/pytest
+	rm -rf docs/test-integration/pytest/ && mkdir -p docs/test-integration/pytest/
 	pytest -v tests-integration --html=docs/test-integration/pytest/index.html --self-contained-html --capture=no
 	cd examples/ && ./awstaga-cli.sh
 
 coverage:
+	rm -rf docs/coverage/coverage/ && mkdir -p docs/coverage/coverage/
 	COVERAGE_FILE=.coverage.unit coverage run --source=./awstaga -m unittest discover -s tests
 	coverage combine
 	coverage report
