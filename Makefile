@@ -43,11 +43,12 @@ lint: stage
 	pylint_report docs/lint/pylint/report.json -o docs/lint/pylint/index.html
 
 complexity: stage
-	git stash
-	rm -rf docs/complexity/wily/ && mkdir -p docs/complexity/wily/
-	wily build awstaga/
-	wily report ~/.wily/ --format HTML --output docs/complexity/wily/index.html
-	git stash apply
+	mv poetry.lock  /tmp/poetry.lock || echo "No poetry.lock to backup..."
+	rm -rf ~/.wily docs/complexity/wily/ && mkdir -p docs/complexity/wily/
+	wily build
+	wily report --format HTML --output docs/complexity/wily/index.html
+	wily index
+	mv /tmp/poetry.lock poetry.lock || echo "No backup poetry.lock to restore..."
 
 test:
 	rm -rf docs/test/pytest/ && mkdir -p docs/test/pytest/
