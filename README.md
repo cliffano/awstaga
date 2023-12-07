@@ -10,11 +10,9 @@ Awstaga
 
 Awstaga is a Python CLI for tagging AWS resources based on a YAML configuration.
 
-This package is intended as a companion for [AWS Tag Editor](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging-resources.html), which is useful for tagging multiple resources in one go, but there's no easy way to re-run the tagging since you have to use the AWS console UI, and its resources filtering capability is quite limited.
+This package is intended as a companion for [AWS Tag Editor](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging-resources.html). While AWS Tag Editor is useful for tagging multiple resources in one go, it has no easy way to re-run the tagging since you have to use the AWS console UI, and its resource filtering capability is quite limited, making it hard to select resources with-more-than basic logic.
 
-Whereas with Awstaga, you can easily re-run the tagging by running the CLI again, on top of the ability to define tagsets which you can reuse and mix and match against a resource. And with Awstaga's support of YAML configuration, it allows you to construct your own mapping between which resources should have which tags. You can construct your own YAML configuration using Python scripts, or any other programming language, allowing you to construct a complex filtering logic, e.g. map tagsets `common` and `abc` to CloudWatch alarms with name containing `ABC`.`
-
-That way if you have new resources generated as time passes, you can just re-run the Python scripts, which will add the new resources to the YAML configuration file, and run Awstaga CLI again.
+Using Awstaga, you can easily re-run the tagging by running the CLI again. It has the ability to define multiple tagsets which you can reuse and mix and match against the resources. And with Awstaga's support of YAML configuration, you can construct your own mapping between the resources and the relevant tags and tagsets. You can generate your own YAML configuration using Python scripts, or any other programming language, allowing you to construct a more complex filtering logic.
 
 Installation
 ------------
