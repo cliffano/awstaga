@@ -6,6 +6,7 @@ from awstaga import apply
 
 class TestAwstaga(unittest.TestCase):
 
+    @patch('time.sleep')
     @patch('boto3.client')
     @patch('awstaga.load')
     @patch('awstaga.init')
@@ -13,7 +14,8 @@ class TestAwstaga(unittest.TestCase):
             self,
             func_init,
             func_load,
-            func_client):
+            func_client,
+            func_sleep):
 
         mock_logger = unittest.mock.Mock()
         mock_client = unittest.mock.Mock()
@@ -39,7 +41,7 @@ class TestAwstaga(unittest.TestCase):
         mock_resource.get_tags.return_value = [mock_resource_tag]
         mock_client.tag_resources.return_value = {}
 
-        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=20)
+        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=20, delay=3)
 
         self.assertEqual(mock_logger.info.call_count, 3)
         mock_logger.info.assert_has_calls([
@@ -54,7 +56,9 @@ class TestAwstaga(unittest.TestCase):
             ResourceARNList=['somearn'],
             Tags={'sometagkey': 'sometagvalue', 'someresourcekey': 'someresourcevalue'}
         )
+        func_sleep.assert_called_once_with(3)
 
+    @patch('time.sleep')
     @patch('boto3.client')
     @patch('awstaga.load')
     @patch('awstaga.init')
@@ -62,7 +66,8 @@ class TestAwstaga(unittest.TestCase):
             self,
             func_init,
             func_load,
-            func_client):
+            func_client,
+            func_sleep):
 
         mock_logger = unittest.mock.Mock()
         mock_client = unittest.mock.Mock()
@@ -87,7 +92,7 @@ class TestAwstaga(unittest.TestCase):
         mock_tagset.get_tags.return_value = [mock_tagset_tag]
         mock_resource.get_tags.return_value = [mock_resource_tag]
 
-        apply(conf_file='awstaga.yaml', dry_run=True, batch_size=20)
+        apply(conf_file='awstaga.yaml', dry_run=True, batch_size=20, delay=2)
 
         self.assertEqual(mock_logger.info.call_count, 2)
         mock_logger.info.assert_has_calls([
@@ -96,7 +101,9 @@ class TestAwstaga(unittest.TestCase):
                 "{'sometagkey': 'sometagvalue', 'someresourcekey': 'someresourcevalue'}")
         ])
         mock_client.tag_resources.assert_not_called()
+        func_sleep.assert_not_called()
 
+    @patch('time.sleep')
     @patch('boto3.client')
     @patch('awstaga.load')
     @patch('awstaga.init')
@@ -104,7 +111,8 @@ class TestAwstaga(unittest.TestCase):
             self,
             func_init,
             func_load,
-            func_client):
+            func_client,
+            func_sleep):
 
         mock_logger = unittest.mock.Mock()
         mock_client = unittest.mock.Mock()
@@ -142,7 +150,7 @@ class TestAwstaga(unittest.TestCase):
         mock_resource4.get_tags.return_value = [mock_resource_tag]
         mock_client.tag_resources.return_value = {}
 
-        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=2)
+        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=2, delay=2)
 
         self.assertEqual(mock_logger.info.call_count, 7)
         mock_logger.info.assert_has_calls([
@@ -167,7 +175,12 @@ class TestAwstaga(unittest.TestCase):
             call(ResourceARNList=['somearn3', 'somearn4'],
                  Tags={'sometagkey': 'sometagvalue', 'someresourcekey': 'someresourcevalue'})
         ])
+        func_sleep.assert_has_calls([
+            call(2),
+            call(2)
+        ])
 
+    @patch('time.sleep')
     @patch('boto3.client')
     @patch('awstaga.load')
     @patch('awstaga.init')
@@ -175,7 +188,8 @@ class TestAwstaga(unittest.TestCase):
             self,
             func_init,
             func_load,
-            func_client):
+            func_client,
+            func_sleep):
 
         mock_logger = unittest.mock.Mock()
         mock_client = unittest.mock.Mock()
@@ -209,7 +223,7 @@ class TestAwstaga(unittest.TestCase):
             }
         }
 
-        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=20)
+        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=20, delay=2)
 
         self.assertEqual(mock_logger.info.call_count, 3)
         mock_logger.info.assert_has_calls([
@@ -228,3 +242,4 @@ class TestAwstaga(unittest.TestCase):
             ResourceARNList=['somearn'],
             Tags={'sometagkey': 'sometagvalue', 'someresourcekey': 'someresourcevalue'}
         )
+        func_sleep.assert_called_once_with(2)

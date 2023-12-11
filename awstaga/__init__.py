@@ -5,13 +5,14 @@ awstaga
 Tag any AWS resource via config file.
 """
 
+import time
 import json
 import boto3
 import click
 from .config import load
 from .logger import init
 
-def apply(conf_file: str, dry_run: bool, batch_size: int) -> None:
+def apply(conf_file: str, dry_run: bool, batch_size: int, delay: int) -> None:
     """Apply tags to resources based on configuration file."""
 
     logger = init(dry_run)
@@ -53,14 +54,14 @@ def apply(conf_file: str, dry_run: bool, batch_size: int) -> None:
             # Apply tags to current batch if batch_size is reached,
             # and the batch is then removed.
             if len(batches[batch_id]['resource_arns']) == batch_size:
-                _process_batch(dry_run, logger, client, batches[batch_id])
+                _process_batch(dry_run, delay, logger, client, batches[batch_id])
                 batches.pop(batch_id)
 
     # Apply tags to remaining batches, each batch would have less than batch_size resources.
     for batch_id, batch in batches.items():
-        _process_batch(dry_run, logger, client, batch)
+        _process_batch(dry_run, delay, logger, client, batch)
 
-def _process_batch(dry_run: bool, logger, client, batch: dict) -> None:
+def _process_batch(dry_run: bool, delay: int, logger, client, batch: dict) -> None:
     if dry_run is False:
         logger.info(f'Applying {len(batch["resource_arns"])} resource(s) '\
                         f'with tags {batch["tags"]}')
@@ -76,6 +77,7 @@ def _process_batch(dry_run: bool, logger, client, batch: dict) -> None:
                                     f'{error.get("StatusCode")} - '\
                                     f'{error.get("ErrorCode")} - '\
                                     f'{error.get("ErrorMessage")}')
+        time.sleep(delay)
 
 @click.command()
 @click.option('--conf-file', default='awstaga.yaml', show_default=True,
@@ -84,9 +86,9 @@ def _process_batch(dry_run: bool, logger, client, batch: dict) -> None:
               help='When dry run is enabled, no tags are applied')
 @click.option('--batch-size', default=20, show_default=True,
               help='Number of resources to tag in one go per batch')
-# @click.option('--force', default=False,
-# help='When force is enabled, all tags are applied, existing tags are overwritten')
-def cli(conf_file: str, dry_run: bool, batch_size: int) -> None:
+@click.option('--delay', default=2, show_default=True,
+              help='Delay in seconds after tagging each batch')
+def cli(conf_file: str, dry_run: bool, batch_size: int, delay: int) -> None:
     """Python CLI for tagging AWS resources based on a YAML configuration.
     """
-    apply(conf_file, dry_run, batch_size)
+    apply(conf_file, dry_run, batch_size, delay)

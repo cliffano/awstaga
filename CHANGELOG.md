@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Add error logging for failed tagging API calls
+- Add --delay flag to CLI #3
 
 ## 1.1.1 - 2023-12-01
 ### Fixed

@@ -141,6 +141,14 @@ You can run Awstaga with a custom batch size `--batch-size <number>` flag:
 
     awstaga --conf-file awstaga.yaml --batch-size 10
 
+### Delay
+
+In order to avoid rate exceeded error, you can run Awstaga with a custom delay `--delay <number>` flag:
+
+    awstaga --conf-file awstaga.yaml --delay 5
+
+By default, the delay is 2 seconds.
+
 Configuration
 -------------
 
