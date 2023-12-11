@@ -53,24 +53,29 @@ def apply(conf_file: str, dry_run: bool, batch_size: int) -> None:
             # Apply tags to current batch if batch_size is reached,
             # and the batch is then removed.
             if len(batches[batch_id]['resource_arns']) == batch_size:
-                if dry_run is False:
-                    logger.info(f'Applying {len(batches[batch_id]["resource_arns"])} resource(s) '\
-                                f'with tags {batches[batch_id]["tags"]}')
-                    client.tag_resources(
-                        ResourceARNList=batches[batch_id]['resource_arns'],
-                        Tags=batches[batch_id]['tags']
-                    )
+                _process_batch(dry_run, logger, client, batches[batch_id])
                 batches.pop(batch_id)
 
     # Apply tags to remaining batches, each batch would have less than batch_size resources.
     for batch_id, batch in batches.items():
-        if dry_run is False:
-            logger.info(f'Applying {len(batch["resource_arns"])} resource(s) '\
+        _process_batch(dry_run, logger, client, batch)
+
+def _process_batch(dry_run: bool, logger, client, batch: dict) -> None:
+    if dry_run is False:
+        logger.info(f'Applying {len(batch["resource_arns"])} resource(s) '\
                         f'with tags {batch["tags"]}')
-            client.tag_resources(
+        response = client.tag_resources(
                 ResourceARNList=batch['resource_arns'],
                 Tags=batch['tags']
             )
+        if 'FailedResourcesMap' in response:
+            logger.error('Failed to apply tags to '\
+                         f'{len(response["FailedResourcesMap"].keys())} resource(s):')
+            for resource_arn, error in response['FailedResourcesMap'].items():
+                logger.error(f'{resource_arn}: '\
+                                    f'{error.get("StatusCode")} - '\
+                                    f'{error.get("ErrorCode")} - '\
+                                    f'{error.get("ErrorMessage")}')
 
 @click.command()
 @click.option('--conf-file', default='awstaga.yaml', show_default=True,
