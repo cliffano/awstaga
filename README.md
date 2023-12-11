@@ -74,6 +74,12 @@ It will write the log messages to stdout:
     [awstaga] INFO Adding resource arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail to a batch with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'High availability SSM document'}
     [awstaga] INFO Adding resource arn:aws:s3:::world-enterprise/development/logo.jpg to a batch with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'World Enterprise logo'}
 
+And if the tagging failed (e.g. due to rate exceeded), it will log the following error messages:
+
+    [awstaga] ERROR Failed to apply tags to 1 resource(s):
+    [awstaga] ERROR arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail: 400 - Throttling - Rate exceeded
+    [awstaga] ERROR arn:aws:s3:::world-enterprise/development/logo.jpg: 400 - Throttling - Rate exceeded
+
 ### Dry run
 
 You can also run Awstaga in dry-run mode by adding `--dry-run` flag:
