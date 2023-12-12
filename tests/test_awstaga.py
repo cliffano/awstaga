@@ -41,7 +41,7 @@ class TestAwstaga(unittest.TestCase):
         mock_resource.get_tags.return_value = [mock_resource_tag]
         mock_client.tag_resources.return_value = {}
 
-        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=20, delay=3)
+        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=5, delay=3)
 
         self.assertEqual(mock_logger.info.call_count, 3)
         mock_logger.info.assert_has_calls([
@@ -92,7 +92,7 @@ class TestAwstaga(unittest.TestCase):
         mock_tagset.get_tags.return_value = [mock_tagset_tag]
         mock_resource.get_tags.return_value = [mock_resource_tag]
 
-        apply(conf_file='awstaga.yaml', dry_run=True, batch_size=20, delay=2)
+        apply(conf_file='awstaga.yaml', dry_run=True, batch_size=5, delay=2)
 
         self.assertEqual(mock_logger.info.call_count, 2)
         mock_logger.info.assert_has_calls([
@@ -223,7 +223,7 @@ class TestAwstaga(unittest.TestCase):
             }
         }
 
-        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=20, delay=2)
+        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=5, delay=2)
 
         self.assertEqual(mock_logger.info.call_count, 3)
         mock_logger.info.assert_has_calls([

@@ -84,7 +84,7 @@ def _process_batch(dry_run: bool, delay: int, logger, client, batch: dict) -> No
               help='Configuration file path')
 @click.option('--dry-run', is_flag=True, default=False, show_default=True,
               help='When dry run is enabled, no tags are applied')
-@click.option('--batch-size', default=20, show_default=True,
+@click.option('--batch-size', default=5, show_default=True,
               help='Number of resources to tag in one go per batch')
 @click.option('--delay', default=2, show_default=True,
               help='Delay in seconds after tagging each batch')

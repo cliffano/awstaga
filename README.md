@@ -136,7 +136,7 @@ During dry-run mode, Awstaga log messages will be labeled with `[dry-run]`:
 
 ### Batch size
 
-In order to optimise the number of API calls, resources with identical tags are put into batches. By default, the batch size is 20.
+In order to optimise the number of API calls, resources with identical tags are put into batches. By default, the batch size is 5.
 You can run Awstaga with a custom batch size `--batch-size <number>` flag:
 
     awstaga --conf-file awstaga.yaml --batch-size 10
