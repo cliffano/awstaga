@@ -147,7 +147,9 @@ In order to avoid rate exceeded error, you can run Awstaga with a custom delay `
 
     awstaga --conf-file awstaga.yaml --delay 5
 
-By default, the delay is 2 seconds.
+By default, the delay is 2 seconds. The delay is applied between each batch of tagging API calls.
+
+Please note that AWS limits the number of tagging API (`tag_resources`) calls to [maximum of 5 calls per second](https://docs.aws.amazon.com/general/latest/gr/arg.html).
 
 Configuration
 -------------
