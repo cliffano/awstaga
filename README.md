@@ -171,6 +171,14 @@ Some example configuration files are available on [examples](examples) folder.
 | `resources[].tags[].value` | String | The tag value. | `Some description` |
 | `resources[].tagsetnames[]` | Array | A list of one or more tagset names. All tags within the tagsets specified are included in the resource. | |
 
+Permissions
+-----------
+
+The AWS credentials used to run `awstaga` CLI must have [the following permissions](https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-prereqs.html):
+
+* Permission to use AWS Resource Groups API
+* Permission to tag resources for individual AWS services that you want to tag
+
 Colophon
 --------
 
