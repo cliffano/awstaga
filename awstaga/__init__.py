@@ -64,19 +64,19 @@ def apply(conf_file: str, dry_run: bool, batch_size: int, delay: int) -> None:
 def _process_batch(dry_run: bool, delay: int, logger, client, batch: dict) -> None:
     if dry_run is False:
         logger.info(f'Applying {len(batch["resource_arns"])} resource(s) '\
-                        f'with tags {batch["tags"]}')
+                    f'with tags {batch["tags"]}')
         response = client.tag_resources(
                 ResourceARNList=batch['resource_arns'],
                 Tags=batch['tags']
             )
-        if 'FailedResourcesMap' in response:
+        if 'FailedResourcesMap' in response and len(response["FailedResourcesMap"].keys()) > 0:
             logger.error('Failed to apply tags to '\
                          f'{len(response["FailedResourcesMap"].keys())} resource(s):')
             for resource_arn, error in response['FailedResourcesMap'].items():
                 logger.error(f'{resource_arn}: '\
-                                    f'{error.get("StatusCode")} - '\
-                                    f'{error.get("ErrorCode")} - '\
-                                    f'{error.get("ErrorMessage")}')
+                             f'{error.get("StatusCode")} - '\
+                             f'{error.get("ErrorCode")} - '\
+                             f'{error.get("ErrorMessage")}')
         time.sleep(delay)
 
 @click.command()

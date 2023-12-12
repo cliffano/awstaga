@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Fix default batch size to 5
+- Fix display of failed tagging API calls only when there's at least 1 failure
 
 ## 1.2.0 - 2023-12-11
 ### Added
@@ -17,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 1.1.1 - 2023-12-01
 ### Fixed
-- Fix default batch size to 20
+- Fix default basch size to 20
 
 ## 1.1.0 - 2023-11-28
 ### Added
