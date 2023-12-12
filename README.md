@@ -80,19 +80,6 @@ And if the tagging failed (e.g. due to rate exceeded), it will log the following
     [awstaga] ERROR arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail: 400 - Throttling - Rate exceeded
     [awstaga] ERROR arn:aws:s3:::world-enterprise/development/logo.jpg: 400 - Throttling - Rate exceeded
 
-### Dry run
-
-You can also run Awstaga in dry-run mode by adding `--dry-run` flag:
-
-    awstaga --conf-file awstaga.yaml --dry-run
-
-During dry-run mode, Awstaga log messages will be labeled with `[dry-run]`:
-
-    [dry-run] [awstaga] INFO Loading configuration file awstaga.yaml
-    [dry-run] [awstaga] INFO Loading 3 tagset(s)...
-    [dry-run] [awstaga] INFO Loading 2 resource(s)...
-    [dry-run] [awstaga] INFO Adding resource arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail to a batch with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'High availability SSM document'}
-
 ### YAML includes
 
 Awstaga supports YAML includes using , so you can split your configuration into multiple files:
@@ -133,6 +120,19 @@ The included resources file `include.d/resources.yaml`:
       tagsetnames:
         - common
         - nonprod
+
+### Dry run
+
+You can also run Awstaga in dry-run mode by adding `--dry-run` flag:
+
+    awstaga --conf-file awstaga.yaml --dry-run
+
+During dry-run mode, Awstaga log messages will be labeled with `[dry-run]`:
+
+    [dry-run] [awstaga] INFO Loading configuration file awstaga.yaml
+    [dry-run] [awstaga] INFO Loading 3 tagset(s)...
+    [dry-run] [awstaga] INFO Loading 2 resource(s)...
+    [dry-run] [awstaga] INFO Adding resource arn:aws:ssm:ap-southeast-2:123456789012:document/high-avail to a batch with tags {'CostCentre': 'FIN-123', 'Organisation': 'World Enterprise', 'Description': 'AWS Resource', 'EnvType': 'prod', 'Availability': '24x7', 'Description': 'High availability SSM document'}
 
 ### Batch size
 
