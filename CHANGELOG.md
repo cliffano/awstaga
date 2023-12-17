@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Use PieMaker for Makefile build
+
 ## 1.2.1 - 2023-12-12
 ### Fixed
 - Fix default batch size to 5
