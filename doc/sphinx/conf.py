@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'awstaga'
-copyright = '2023, Cliffano Subagio'
-author = 'Cliffano Subagio'
+copyright = '2023, cliffano'
+author = 'cliffano'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
