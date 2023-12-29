@@ -1,10 +1,10 @@
 ################################################################
-# PieMaker: A Makefile for generating API clients using OpenAPI Generator
+# PieMaker: Makefile for building Python packages
 # https://github.com/cliffano/piemaker
 ################################################################
 
-# The version of PieMaker
-PIEMAKER_VERSION = 0.9.0-pre.0
+# PieMaker's version number
+PIEMAKER_VERSION = 1.0.0
 
 ################################################################
 # User configuration variables
@@ -40,16 +40,16 @@ ci: clean deps lint test coverage complexity doc package reinstall test-integrat
 stage:
 	mkdir -p stage
 
-# Remove all generated API clients code
+# Remove all temporary (staged, generated, cached) files
 clean:
-	rm -rf stage *.lock *.egg-info build dist docs/ $(PACKAGE_NAME)/_pycache_/ $(PACKAGE_NAME)/*.pyc tests/_pycache_/ tests/*.pyc .coverage ~/.wily/ .pytest_cache/ .tox/ .mypy_cache/ .coverage.*
+	rm -rf stage/ *.lock *.egg-info build dist/ docs/ $(PACKAGE_NAME)/__pycache__/ $(PACKAGE_NAME)/*.pyc tests/__pycache__/ tests/*.pyc .coverage ~/.wily/ .pytest_cache/ .tox/ .mypy_cache/ .coverage.*
 
-# Retrieve the dependencies
+# Retrieve the Pyhon package dependencies
 deps:
 	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install poetry --ignore-installed
 	python3 -m venv ${VIRTUAL_ENV} && PATH=${POETRY_HOME}/bin/:$$PATH poetry install --no-root --compile
 
-deps-extra:
+deps-extra-apt:
 	apt-get update
 	apt-get install -y python3-venv
 
@@ -59,24 +59,22 @@ update-to-latest:
 
 # Update Makefile to the version defined in TARGET_PIEMAKER_VERSION parameter
 update-to-version:
-	curl https://raw.githubusercontent.com/cliffano/piemaker/v$(TARGET_PIEMAKER_VERSION)/src/Makefile-piemaker -o Makefile
+	curl https://raw.githubusercontent.com/cliffano/piemaker/$(TARGET_PIEMAKER_VERSION)/src/Makefile-piemaker -o Makefile
 
 ################################################################
 # Testing targets
 
 lint: stage
 	mkdir -p docs/lint/pylint/ docs/lint/pylint/
-	pylint $(PACKAGE_NAME)/*.py $(PACKAGE_NAME)/models/*.py tests/*.py tests/models/*.py tests-integration/*.py
-	pylint $(PACKAGE_NAME)/*.py $(PACKAGE_NAME)/models/*.py tests/*.py tests/models/*.py tests-integration/*.py --output-format=pylint_report.CustomJsonReporter > docs/lint/pylint/report.json
+	pylint $(shell find $(PACKAGE_NAME) -type f -regex ".*\.py" | xargs echo) $(shell find tests/ -type f -regex ".*\.py" | xargs echo) $(shell find tests-integration/ -type f -regex ".*\.py" | xargs echo)
+	pylint $(shell find $(PACKAGE_NAME) -type f -regex ".*\.py" | xargs echo) $(shell find tests/ -type f -regex ".*\.py" | xargs echo) $(shell find tests-integration/ -type f -regex ".*\.py" | xargs echo) --output-format=pylint_report.CustomJsonReporter > docs/lint/pylint/report.json
 	pylint_report docs/lint/pylint/report.json -o docs/lint/pylint/index.html
 
 complexity: stage
 	mv poetry.lock  /tmp/poetry.lock || echo "No poetry.lock to backup..."
 	rm -rf docs/complexity/wily/ && mkdir -p docs/complexity/wily/
-	wily clean -y
-	wily build $(PACKAGE_NAME)/
-	wily report --format HTML --output docs/complexity/wily/index.html $(PACKAGE_NAME)/__init__.py
-	wily list-metrics
+	wily clean -y && wily build $(PACKAGE_NAME)/
+	wily report --format HTML --output docs/complexity/wily/index.html $(PACKAGE_NAME)/__init__.py && wily list-metrics
 	mv /tmp/poetry.lock poetry.lock || echo "No backup poetry.lock to restore..."
 
 test:
@@ -86,7 +84,11 @@ test:
 test-integration:
 	rm -rf docs/test-integration/pytest/ && mkdir -p docs/test-integration/pytest/
 	pytest -v tests-integration --html=docs/test-integration/pytest/index.html --self-contained-html --capture=no
-	cd examples/ && ./$(PACKAGE_NAME)-cli.sh
+
+test-examples:
+	for f in examples/*.sh; do \
+	  bash "$$f"; \
+	done
 
 coverage:
 	rm -rf docs/coverage/coverage/ && mkdir -p docs/coverage/coverage/
@@ -108,20 +110,18 @@ release-patch:
 	rtk release --release-increment-type patch
 
 ################################################################
-# Package and publishing targets
+# Packaging, installation, and publishing targets
+
+package:
+	poetry build
 
 install: package
 	poetry install
 
 uninstall:
-	pip3 uninstall $(PACKAGE_NAME) -y
+	pip3 uninstall $(PACKAGE_NAME) -y || echo "Nothing to uninstall..."
 
-reinstall:
-	make uninstall || echo "Nothing to uninstall..."
-	make package install
-
-package:
-	poetry build
+reinstall: uninstall install
 
 publish:
 	poetry publish --username __token__ --password $(PASSWORD)
@@ -138,4 +138,4 @@ doc: stage
 
 ################################################################
 
-.PHONY: ci clean stage deps deps-extra doc release lint complexity test test-integration coverage install uninstall reinstall package publish
+.PHONY: all ci clean stage deps deps-extra doc release lint complexity test test-integration test-examples coverage install uninstall reinstall package publish
