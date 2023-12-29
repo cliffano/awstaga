@@ -29,33 +29,6 @@
         "statement": 0,
         "warning": 0
       },
-      "awstaga.__init__": {
-        "convention": 0,
-        "error": 0,
-        "fatal": 0,
-        "info": 0,
-        "refactor": 0,
-        "statement": 45,
-        "warning": 0
-      },
-      "awstaga.config": {
-        "convention": 0,
-        "error": 0,
-        "fatal": 0,
-        "info": 0,
-        "refactor": 0,
-        "statement": 54,
-        "warning": 0
-      },
-      "awstaga.logger": {
-        "convention": 0,
-        "error": 0,
-        "fatal": 0,
-        "info": 0,
-        "refactor": 0,
-        "statement": 7,
-        "warning": 0
-      },
       "awstaga.models.__init__": {
         "convention": 0,
         "error": 0,
@@ -63,15 +36,6 @@
         "info": 0,
         "refactor": 0,
         "statement": 0,
-        "warning": 0
-      },
-      "awstaga.models.resource": {
-        "convention": 0,
-        "error": 0,
-        "fatal": 0,
-        "info": 0,
-        "refactor": 0,
-        "statement": 11,
         "warning": 0
       },
       "awstaga.models.tag": {
@@ -92,31 +56,40 @@
         "statement": 8,
         "warning": 0
       },
-      "tests.__init__": {
+      "awstaga.models.resource": {
         "convention": 0,
         "error": 0,
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 0,
+        "statement": 11,
         "warning": 0
       },
-      "tests.test_awstaga": {
+      "awstaga.logger": {
         "convention": 0,
         "error": 0,
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 113,
+        "statement": 7,
         "warning": 0
       },
-      "tests.test_config": {
+      "awstaga.__init__": {
         "convention": 0,
         "error": 0,
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 176,
+        "statement": 45,
+        "warning": 0
+      },
+      "awstaga.config": {
+        "convention": 0,
+        "error": 0,
+        "fatal": 0,
+        "info": 0,
+        "refactor": 0,
+        "statement": 54,
         "warning": 0
       },
       "tests.test_logger": {
@@ -137,6 +110,15 @@
         "statement": 0,
         "warning": 0
       },
+      "tests.models.test_tagset": {
+        "convention": 0,
+        "error": 0,
+        "fatal": 0,
+        "info": 0,
+        "refactor": 0,
+        "statement": 14,
+        "warning": 0
+      },
       "tests.models.test_resource": {
         "convention": 0,
         "error": 0,
@@ -155,13 +137,31 @@
         "statement": 9,
         "warning": 0
       },
-      "tests.models.test_tagset": {
+      "tests.test_config": {
         "convention": 0,
         "error": 0,
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 14,
+        "statement": 176,
+        "warning": 0
+      },
+      "tests.__init__": {
+        "convention": 0,
+        "error": 0,
+        "fatal": 0,
+        "info": 0,
+        "refactor": 0,
+        "statement": 0,
+        "warning": 0
+      },
+      "tests.test_awstaga": {
+        "convention": 0,
+        "error": 0,
+        "fatal": 0,
+        "info": 0,
+        "refactor": 0,
+        "statement": 113,
         "warning": 0
       },
       "test_constructor": {
