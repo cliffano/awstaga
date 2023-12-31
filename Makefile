@@ -4,7 +4,7 @@
 ################################################################
 
 # PieMaker's version number
-PIEMAKER_VERSION = 1.0.0
+PIEMAKER_VERSION = 1.1.0
 
 ################################################################
 # User configuration variables
@@ -65,24 +65,24 @@ update-to-version:
 # Testing targets
 
 lint: stage
-	mkdir -p docs/lint/pylint/ docs/lint/pylint/
+	rm -rf docs/lint/pylint/ stage/lint/ && mkdir -p docs/lint/pylint/ stage/lint/
 	pylint $(shell find $(PACKAGE_NAME) -type f -regex ".*\.py" | xargs echo) $(shell find tests/ -type f -regex ".*\.py" | xargs echo) $(shell find tests-integration/ -type f -regex ".*\.py" | xargs echo)
 	pylint $(shell find $(PACKAGE_NAME) -type f -regex ".*\.py" | xargs echo) $(shell find tests/ -type f -regex ".*\.py" | xargs echo) $(shell find tests-integration/ -type f -regex ".*\.py" | xargs echo) --output-format=pylint_report.CustomJsonReporter > docs/lint/pylint/report.json
 	pylint_report docs/lint/pylint/report.json -o docs/lint/pylint/index.html
 
 complexity: stage
-	mv poetry.lock  /tmp/poetry.lock || echo "No poetry.lock to backup..."
-	rm -rf docs/complexity/wily/ && mkdir -p docs/complexity/wily/
-	wily clean -y && wily build $(PACKAGE_NAME)/
-	wily report --format HTML --output docs/complexity/wily/index.html $(PACKAGE_NAME)/__init__.py && wily list-metrics
-	mv /tmp/poetry.lock poetry.lock || echo "No backup poetry.lock to restore..."
+	rm -rf docs/complexity/wily/ stage/complexity/ && mkdir -p docs/complexity/wily/ stage/complexity/
+	wily clean -y
+	wily build $(PACKAGE_NAME)/
+	wily report --format HTML --output docs/complexity/wily/index.html $(PACKAGE_NAME)/__init__.py
+	wily list-metrics
 
 test:
-	rm -rf docs/test/pytest/ && mkdir -p docs/test/pytest/
+	rm -rf docs/test/pytest/ stage/test/ && mkdir -p docs/test/pytest/ stage/test/
 	pytest -v tests --html=docs/test/pytest/index.html --self-contained-html --capture=no
 
 test-integration:
-	rm -rf docs/test-integration/pytest/ && mkdir -p docs/test-integration/pytest/
+	rm -rf docs/test-integration/pytest/ stage/test-integration/ && mkdir -p docs/test-integration/pytest/ stage/test-integration/
 	pytest -v tests-integration --html=docs/test-integration/pytest/index.html --self-contained-html --capture=no
 
 test-examples:
@@ -91,7 +91,7 @@ test-examples:
 	done
 
 coverage:
-	rm -rf docs/coverage/coverage/ && mkdir -p docs/coverage/coverage/
+	rm -rf docs/coverage/coverage/ stage/coverage/ && mkdir -p docs/coverage/coverage/ stage/coverage/
 	COVERAGE_FILE=.coverage.unit coverage run --source=./$(PACKAGE_NAME) -m unittest discover -s tests
 	coverage combine
 	coverage report
@@ -130,7 +130,7 @@ publish:
 # Documentation targets
 
 doc: stage
-	rm -rf docs/doc/sphinx/ && mkdir -p docs/doc/sphinx/
+	rm -rf docs/doc/sphinx/ stage/doc/ && mkdir -p docs/doc/sphinx/ stage/doc/
 	sphinx-apidoc -o docs/doc/sphinx/ --full -H "$(PACKAGE_NAME)" -A "$(AUTHOR)" $(PACKAGE_NAME) && \
 		cd docs/doc/sphinx/ && \
 		make html && \
