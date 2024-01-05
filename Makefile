@@ -95,7 +95,7 @@ coverage:
 	COVERAGE_FILE=.coverage.unit coverage run --source=./$(PACKAGE_NAME) -m unittest discover -s tests
 	coverage combine
 	coverage report
-	coverage html && rm -f /docs/coverage/coverage/.gitignore
+	coverage html && rm -f docs/coverage/coverage/.gitignore
 
 ################################################################
 # Release targets
