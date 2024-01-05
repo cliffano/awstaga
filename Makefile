@@ -4,7 +4,7 @@
 ################################################################
 
 # PieMaker's version number
-PIEMAKER_VERSION = 1.1.0
+PIEMAKER_VERSION = 1.1.1-pre.0
 
 ################################################################
 # User configuration variables
@@ -95,7 +95,7 @@ coverage:
 	COVERAGE_FILE=.coverage.unit coverage run --source=./$(PACKAGE_NAME) -m unittest discover -s tests
 	coverage combine
 	coverage report
-	coverage html
+	coverage html && rm -f /docs/coverage/coverage/.gitignore
 
 ################################################################
 # Release targets
