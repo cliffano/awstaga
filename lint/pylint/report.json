@@ -161,7 +161,7 @@
         "fatal": 0,
         "info": 0,
         "refactor": 0,
-        "statement": 113,
+        "statement": 133,
         "warning": 0
       },
       "tests-integration.test_constructor": {
@@ -174,7 +174,7 @@
         "warning": 0
       }
     },
-    "statement": 517,
+    "statement": 537,
     "error": 0,
     "warning": 0,
     "refactor": 0,

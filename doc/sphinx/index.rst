@@ -1,5 +1,5 @@
 .. awstaga documentation master file, created by
-   sphinx-quickstart on Fri Jan  5 02:52:36 2024.
+   sphinx-quickstart on Tue Jan  9 22:29:39 2024.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
