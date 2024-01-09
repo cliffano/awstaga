@@ -62,6 +62,51 @@ class TestAwstaga(unittest.TestCase):
     @patch('boto3.client')
     @patch('awstaga.load')
     @patch('awstaga.init')
+    def test_apply_with_no_tags( # pylint: disable=too-many-arguments
+            self,
+            func_init,
+            func_load,
+            func_client,
+            func_sleep):
+
+        mock_logger = unittest.mock.Mock()
+        mock_client = unittest.mock.Mock()
+        mock_tagset = unittest.mock.Mock()
+        mock_resource = unittest.mock.Mock()
+
+        func_init.return_value = mock_logger
+        func_client.return_value = mock_client
+        func_load.return_value = (
+            { 'sometagsetname': mock_tagset },
+            [mock_resource]
+        )
+
+        mock_resource.get_arn.return_value = 'somearn'
+        mock_resource.get_tagset_names.return_value = ['sometagsetname']
+        mock_tagset.get_tags.return_value = []
+        mock_resource.get_tags.return_value = []
+        mock_client.tag_resources.return_value = {}
+
+        apply(conf_file='awstaga.yaml', dry_run=False, batch_size=5, delay=3)
+
+        self.assertEqual(mock_logger.info.call_count, 1)
+        mock_logger.info.assert_has_calls([
+            call('Loading configuration file awstaga.yaml')
+        ])
+        # should log a warning
+        self.assertEqual(mock_logger.warning.call_count, 1)
+        mock_logger.warning.assert_has_calls([
+            call('No tags to apply to resource somearn')
+        ])
+
+        # should not call tag_resources at all
+        mock_client.tag_resources.assert_not_called()
+        func_sleep.assert_not_called()
+
+    @patch('time.sleep')
+    @patch('boto3.client')
+    @patch('awstaga.load')
+    @patch('awstaga.init')
     def test_apply_with_enabled_dry_run( # pylint: disable=too-many-arguments
             self,
             func_init,
