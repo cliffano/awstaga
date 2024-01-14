@@ -4,7 +4,7 @@
 ################################################################
 
 # PieMaker's version number
-PIEMAKER_VERSION = 1.1.1-pre.0
+PIEMAKER_VERSION = 1.1.1
 
 ################################################################
 # User configuration variables
