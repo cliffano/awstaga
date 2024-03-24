@@ -8,7 +8,7 @@
 Awstaga
 -------
 
-Awstaga is a Python CLI for tagging AWS resources based on a YAML configuration.
+Awstaga is a Python CLI for tagging AWS resources defined in a YAML configuration.
 
 This package is intended as a companion for [AWS Tag Editor](https://docs.aws.amazon.com/tag-editor/latest/userguide/tagging-resources.html). While AWS Tag Editor is useful for tagging multiple resources in one go, it has no easy way to re-run the tagging since you have to use the AWS console UI, and its resource filtering capability is quite limited, making it hard to select resources with-more-than basic logic.
 
