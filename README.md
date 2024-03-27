@@ -2,6 +2,7 @@
 
 [![Build Status](https://github.com/cliffano/awstaga/workflows/CI/badge.svg)](https://github.com/cliffano/awstaga/actions?query=workflow%3ACI)
 [![Security Status](https://snyk.io/test/github/cliffano/awstaga/badge.svg)](https://snyk.io/test/github/cliffano/awstaga)
+[![Dependencies Status](https://img.shields.io/librariesio/release/pypi/awstaga)](https://libraries.io/github/cliffano/awstaga)
 [![Published Version](https://img.shields.io/pypi/v/awstaga.svg)](https://pypi.python.org/pypi/awstaga)
 <br/>
 
