@@ -80,13 +80,13 @@ def _process_batch(dry_run: bool, delay: int, logger, client, batch: dict) -> No
         time.sleep(delay)
 
 @click.command()
-@click.option('--conf-file', default='awstaga.yaml', show_default=True,
+@click.option('--conf-file', default='awstaga.yaml', show_default=True, type=str,
               help='Configuration file path')
-@click.option('--dry-run', is_flag=True, default=False, show_default=True,
+@click.option('--dry-run', is_flag=True, default=False, show_default=True, type=bool,
               help='When dry run is enabled, no tags are applied')
-@click.option('--batch-size', default=5, show_default=True,
+@click.option('--batch-size', default=5, show_default=True, type=int,
               help='Number of resources to tag in one go per batch')
-@click.option('--delay', default=2, show_default=True,
+@click.option('--delay', default=2, show_default=True, type=int,
               help='Delay in seconds after tagging each batch')
 def cli(conf_file: str, dry_run: bool, batch_size: int, delay: int) -> None:
     """Python CLI for tagging AWS resources based on a YAML configuration.
