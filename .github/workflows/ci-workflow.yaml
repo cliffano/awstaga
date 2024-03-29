@@ -16,6 +16,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: make ci
+      - run: make test-examples
       - uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.STUDIO_GITHUB_TOKEN }}

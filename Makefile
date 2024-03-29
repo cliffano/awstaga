@@ -4,7 +4,7 @@
 ################################################################
 
 # PieMaker's version number
-PIEMAKER_VERSION = 1.2.0
+PIEMAKER_VERSION = 1.2.1-pre.0
 
 ################################################################
 # User configuration variables
@@ -90,7 +90,8 @@ test-integration:
 	pytest -v tests-integration --html=docs/test-integration/pytest/index.html --self-contained-html --capture=no
 
 test-examples:
-	for f in examples/*.sh; do \
+	cd examples && \
+	for f in *.sh; do \
 	  bash "$$f"; \
 	done
 
