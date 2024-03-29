@@ -4,7 +4,7 @@
 ################################################################
 
 # PieMaker's version number
-PIEMAKER_VERSION = 1.1.1
+PIEMAKER_VERSION = 1.2.0
 
 ################################################################
 # User configuration variables
@@ -48,6 +48,10 @@ clean:
 deps:
 	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install poetry --ignore-installed
 	python3 -m venv ${VIRTUAL_ENV} && PATH=${POETRY_HOME}/bin/:$$PATH poetry install --no-root --compile
+	poetry self add poetry-plugin-up
+
+deps-upgrade:
+	poetry up --latest
 
 deps-extra-apt:
 	apt-get update
@@ -138,4 +142,4 @@ doc: stage
 
 ################################################################
 
-.PHONY: all ci clean stage deps deps-extra doc release lint complexity test test-integration test-examples coverage install uninstall reinstall package publish
+.PHONY: all ci clean stage deps deps-upgrade deps-extra doc release lint complexity test test-integration test-examples coverage install uninstall reinstall package publish
