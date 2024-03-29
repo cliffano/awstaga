@@ -30,18 +30,18 @@ awstaga = "awstaga:cli"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-boto3 = "^1.26.155"
-click = "^8.1.3"
-conflog = "^1.5.1"
-PyYAML = "^6.0.1"
-pyyaml-include = "^1.3.1"
+boto3 = "1.26.155"
+click = "8.1.3"
+conflog = "1.5.1"
+PyYAML = "6.0.1"
+pyyaml-include = "^1.3.2"
 
 [tool.poetry.group.dev.dependencies]
-twine = "4.0.2"
+twine = "4.0.0"
 wheel = "0.40.0"
 
 [tool.poetry.group.test.dependencies]
-coverage = "7.2.4"
+coverage = "7.2.3"
 pylint = "3.0.1"
 pytest = "7.3.1"
 wily = "1.24.0"
