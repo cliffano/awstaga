@@ -2,7 +2,9 @@
 from unittest.mock import patch, call
 import unittest.mock
 import unittest
+from click.testing import CliRunner
 from awstaga import apply
+from awstaga import cli
 
 class TestAwstaga(unittest.TestCase):
 
@@ -288,3 +290,27 @@ class TestAwstaga(unittest.TestCase):
             Tags={'sometagkey': 'sometagvalue', 'someresourcekey': 'someresourcevalue'}
         )
         func_sleep.assert_called_once_with(2)
+
+    @patch('awstaga.apply')
+    def test_cli( # pylint: disable=too-many-arguments
+            self,
+            func_apply):
+
+        func_apply.return_value = None
+
+        runner = CliRunner()
+        result = runner.invoke(cli, [
+            '--conf-file',
+            'awstaga.yaml',
+            '--dry-run',
+            '--batch-size',
+            5,
+            '--delay',
+            2
+        ])
+        assert not result.exception
+        assert result.exit_code == 0
+        assert result.output == ''
+
+        # should delegate call to apply
+        func_apply.assert_called_once_with('awstaga.yaml', True, 5, 2)
