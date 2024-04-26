@@ -1,5 +1,5 @@
 """
-awstaga
-=======
-Tag any AWS resource via config file.
+models
+======
+Model classes representing the AWS resources details.
 """
