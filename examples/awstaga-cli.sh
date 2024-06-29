@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -o nounset
 
 export AWS_DEFAULT_REGION=ap-southeast-2
 
