@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Removed
+- Remove support for Python 3.8
+
 ## 1.3.0 - 2024-04-27
 ### Added
 - Readd poetry.lock to repo
