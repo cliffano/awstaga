@@ -8,7 +8,7 @@ jobs:
       max-parallel: 1
       matrix:
         # Available Python versions: https://raw.githubusercontent.com/actions/python-versions/main/versions-manifest.json
-        python: [ '3.10', '3.12' ]
+        python: [ '3.9', '3.10', '3.11', '3.12', '3.13' ]
     name: python ${{ matrix.python }}
     steps:
       - uses: actions/checkout@v4
