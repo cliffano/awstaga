@@ -1,4 +1,5 @@
 # Start of Studio gitignore
+core
 docs/
 stage/
 # End of Studio gitignore
