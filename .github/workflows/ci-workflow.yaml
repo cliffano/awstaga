@@ -17,7 +17,7 @@ jobs:
           python-version: ${{ matrix.python }}
       - run: make ci
       - run: make test-examples || echo "Examples test exits with error"
-      - uses: peaceiris/actions-gh-pages@v3
+      - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.STUDIO_GITHUB_TOKEN }}
           publish_dir: docs
