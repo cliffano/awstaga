@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python }}
-      - run: make ci
+      - run: make deps-extra-apt ci
       - run: make test-examples || echo "Examples test exits with error"
       - uses: peaceiris/actions-gh-pages@v4
         with:

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+- Add deps-extra-apt to CI run due to sphinx-build bundling
+
 ### Changed
 - Upgrade PieMaker to 1.10.0
 
