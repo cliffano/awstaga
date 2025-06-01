@@ -61,7 +61,6 @@ deps-upgrade:
 	$(call python_venv,poetry up --latest)
 
 deps-extra-apt:
-	apt-get update
 	apt-get install -y python3-venv
 	apt-get install -y python3-sphinx # needed by sphinx-apidoc
 
