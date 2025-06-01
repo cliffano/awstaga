@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Upgrade PieMaker to 1.10.0
+
 ### Removed
 - Remove support for Python 3.8 and 3.9
 
