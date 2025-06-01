@@ -47,7 +47,7 @@ clean:
 
 # Retrieve the Pyhon package dependencies
 deps:
-	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install --force-reinstall --ignore-installed
+	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install --force-reinstall poetry==2.1.3 --ignore-installed
 	python3 -m venv ${VIRTUAL_ENV} && PATH=${POETRY_HOME}/bin/:$$PATH poetry install --no-root --compile
 	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install --force-reinstall poetry-plugin-up==0.8.0 --ignore-installed
 	poetry self add poetry-plugin-export
