@@ -1,6 +1,7 @@
 """This module contains the TagSet class."""
 
-class TagSet():
+
+class TagSet:
     """This class represents a TagSet.
     It contains the name of the TagSet and the tags that belong to .
     """

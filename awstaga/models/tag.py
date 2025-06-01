@@ -1,6 +1,7 @@
 """This module contains the Tag class."""
 
-class Tag():
+
+class Tag:
     """This class represents a tag.
     It contains the key and value pair of the tag.
     """
@@ -20,8 +21,8 @@ class Tag():
 
     def __str__(self) -> str:
         """Return the string representation of the Tag object."""
-        return f'{self.key}={self.value}'
+        return f"{self.key}={self.value}"
 
     def __repr__(self) -> str:
         """Return the string representation of the Tag object."""
-        return f'{self.key}={self.value}'
+        return f"{self.key}={self.value}"

@@ -1,6 +1,7 @@
 """This module contains the Resource class."""
 
-class Resource():
+
+class Resource:
     """This class represents the resource to be tagged.
     It contains the ARN of the resource, the tags to be applied to the resource,
     and the names of the TagSets to be applied to the resource.
