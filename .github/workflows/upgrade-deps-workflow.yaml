@@ -1,0 +1,26 @@
+---
+name: Upgrade Deps
+on: [workflow_dispatch]
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.STUDIO_GITHUB_TOKEN }}
+          set-safe-directory: ${{ github.workspace }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: git config --global user.email 'pakkunbot'
+      - run: git config --global user.name 'blah+pakkun@cliffano.com'
+      - run: make clean deps deps-upgrade
+      # Specify explicit targets below instead of using ci target
+      # and exclude complexity target due to wily checking repository status
+      - run: make clean deps style lint test coverage doc package reinstall test-integration
+      - run: git commit -am 'Upgrade dependencies to latest versions'
+      - uses: ad-m/github-push-action@v0.8.0
+        with:
+          tags: false
+          github_token: ${{ secrets.STUDIO_GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
