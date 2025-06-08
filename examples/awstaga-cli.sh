@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -o nounset
 
+cd ../
+. ./.venv/bin/activate
+cd examples/
+
 export AWS_DEFAULT_REGION=ap-southeast-2
 
 printf "\n\n========================================\n"

@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Fixed
+- Fix command not found on examples script run
+
 ## 2.0.0 - 2025-06-01
 ### Added
 - Add deps-extra-apt to CI run due to sphinx-build bundling
