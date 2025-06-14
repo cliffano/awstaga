@@ -122,6 +122,7 @@ def _process_batch(dry_run: bool, delay: int, logger, client, batch: dict) -> No
     type=int,
     help="Delay in seconds after tagging each batch",
 )
+@click.version_option(package_name="awstaga", prog_name="awstaga")
 def cli(conf_file: str, dry_run: bool, batch_size: int, delay: int) -> None:
     """Python CLI for tagging AWS resources based on a YAML configuration."""
     apply(conf_file, dry_run, batch_size, delay)

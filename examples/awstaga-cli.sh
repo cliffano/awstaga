@@ -12,6 +12,10 @@ printf "Show help guide: awstaga --help\n"
 awstaga --help
 
 printf "\n\n========================================\n"
+printf "Show version info: awstaga --version\n"
+awstaga --version
+
+printf "\n\n========================================\n"
 printf "Run command with default config file: awstaga\n"
 awstaga
 
