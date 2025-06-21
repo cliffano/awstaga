@@ -193,3 +193,7 @@ Build reports:
 * [Test coverage report](https://cliffano.github.io/awstaga/coverage/coverage/index.html)
 * [Integration tests report](https://cliffano.github.io/awstaga/test-integration/pytest/index.html)
 * [API Documentation](https://cliffano.github.io/awstaga/doc/sphinx/index.html)
+
+Related projects:
+
+* [Packer Awstaga](https://github.com/cliffano/packer-awstaga) - Packer builder of machine image for running Awstaga configuration-based AWS resource tagging tool
