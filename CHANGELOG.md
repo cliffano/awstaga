@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Add --version flag to show version info
+- Add Python 3.14 support
 
 ### Fixed
 - Fix command not found on examples script run

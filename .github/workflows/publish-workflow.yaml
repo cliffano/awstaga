@@ -8,9 +8,9 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
         with:
-          python-version: '3.12'
+          python-version: '3.14'
       - run: make clean deps package install
       - run: make publish PASSWORD=${{ secrets.PYPI_TOKEN }}
