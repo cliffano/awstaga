@@ -1,0 +1,38 @@
+awstaga/logger.py - A
+awstaga/config.py - A
+awstaga/__init__.py - A
+awstaga/models/tag.py - A
+awstaga/models/resource.py - A
+awstaga/models/tagset.py - A
+awstaga/models/__init__.py - A
+awstaga/logger.py
+    F 6:0 init - A (2)
+awstaga/config.py
+    F 55:0 _load_resources - C (12)
+    F 13:0 load - B (7)
+    F 45:0 _load_tagsets - A (3)
+awstaga/__init__.py
+    F 16:0 apply - B (9)
+    F 68:0 _process_batch - A (5)
+    F 126:0 cli - A (1)
+awstaga/models/tag.py
+    C 4:0 Tag - A (2)
+    M 9:4 Tag.__init__ - A (1)
+    M 14:4 Tag.get_key - A (1)
+    M 18:4 Tag.get_value - A (1)
+    M 22:4 Tag.__str__ - A (1)
+    M 26:4 Tag.__repr__ - A (1)
+awstaga/models/resource.py
+    C 4:0 Resource - A (2)
+    M 10:4 Resource.__init__ - A (1)
+    M 16:4 Resource.get_arn - A (1)
+    M 20:4 Resource.get_tags - A (1)
+    M 24:4 Resource.get_tagset_names - A (1)
+awstaga/models/tagset.py
+    C 4:0 TagSet - A (2)
+    M 9:4 TagSet.__init__ - A (1)
+    M 14:4 TagSet.get_name - A (1)
+    M 18:4 TagSet.get_tags - A (1)
+
+22 blocks (classes, functions, methods) analyzed.
+Average complexity: A (2.590909090909091)
