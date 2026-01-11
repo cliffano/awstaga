@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Switch complexity check to Radon
+- Upgrade PieMaker to 2.0.0
 
 ### Fixed
 - Fix command not found on examples script run

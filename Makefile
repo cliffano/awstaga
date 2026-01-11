@@ -4,7 +4,7 @@
 ################################################################
 
 # PieMaker's version number
-PIEMAKER_VERSION = 1.10.0
+PIEMAKER_VERSION = 2.0.0
 
 ################################################################
 # User configuration variables
@@ -51,7 +51,7 @@ clean:
 
 # Retrieve the Pyhon package dependencies
 deps:
-	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install --force-reinstall poetry==2.1.3 --ignore-installed
+	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install --force-reinstall poetry==2.2.1 --ignore-installed
 	python3 -m venv ${VIRTUAL_ENV} && PATH=${POETRY_HOME}/bin/:$$PATH poetry install --no-root --compile
 	python3 -m venv ${POETRY_HOME} && ${POETRY_HOME}/bin/pip install --force-reinstall poetry-plugin-up==0.9.0 --ignore-installed
 	$(call python_venv,poetry self add poetry-plugin-export)
@@ -97,11 +97,10 @@ lint: stage
 	$(call python_venv,pylint_report docs/lint/pylint/report.json -o docs/lint/pylint/index.html)
 
 complexity: stage
-	rm -rf docs/complexity/wily/ stage/complexity/ && mkdir -p docs/complexity/wily/ stage/complexity/
-	$(call python_venv,wily clean -y)
-	$(call python_venv,wily build $(PACKAGE_NAME)/)
-	$(call python_venv,wily report --format HTML --output docs/complexity/wily/index.html $(PACKAGE_NAME)/__init__.py)
-	$(call python_venv,wily list-metrics)
+	rm -rf docs/complexity/radon/ stage/complexity/ && mkdir -p docs/complexity/radon/ stage/complexity/
+	$(call python_venv,radon mi $(PACKAGE_NAME)/) 2>&1 | tee -a docs/complexity/radon/report.txt
+	$(call python_venv,radon cc -s -a $(PACKAGE_NAME)/) 2>&1 | tee -a docs/complexity/radon/report.txt
+	$(call python_venv,cat docs/complexity/radon/report.txt | ansi2html) > docs/complexity/radon/index.html
 
 test:
 	rm -rf docs/test/pytest/ stage/test/ && mkdir -p docs/test/pytest/ stage/test/
@@ -112,6 +111,7 @@ test-integration:
 	$(call python_venv,pytest -v tests-integration --html=docs/test-integration/pytest/index.html --self-contained-html --capture=no)
 
 test-examples:
+	mkdir -p stage/test-examples/
 	cd examples && \
 	for f in *.sh; do \
 	  bash -x "$$f"; \
