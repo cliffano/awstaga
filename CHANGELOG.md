@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add --version flag to show version info
 - Add Python 3.14 support
 
+### Changed
+- Switch complexity check to Radon
+
 ### Fixed
 - Fix command not found on examples script run
 

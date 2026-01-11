@@ -1,8 +1,9 @@
 <img align="right" src="https://raw.github.com/cliffano/awstaga/main/avatar.jpg" alt="Avatar"/>
 
 [![Build Status](https://github.com/cliffano/awstaga/workflows/CI/badge.svg)](https://github.com/cliffano/awstaga/actions?query=workflow%3ACI)
-[![Security Status](https://snyk.io/test/github/cliffano/awstaga/badge.svg)](https://snyk.io/test/github/cliffano/awstaga)
+[![Code Scanning Status](https://github.com/cliffano/awstaga/workflows/CodeQL/badge.svg)](https://github.com/cliffano/awstaga/actions?query=workflow%3ACodeQL)
 [![Dependencies Status](https://img.shields.io/librariesio/release/pypi/awstaga)](https://libraries.io/pypi/awstaga)
+[![Security Status](https://snyk.io/test/github/cliffano/awstaga/badge.svg)](https://snyk.io/test/github/cliffano/awstaga)
 [![Published Version](https://img.shields.io/pypi/v/awstaga.svg)](https://pypi.python.org/pypi/awstaga)
 <br/>
 
@@ -188,7 +189,7 @@ Colophon
 Build reports:
 
 * [Lint report](https://cliffano.github.io/awstaga/lint/pylint/index.html)
-* [Code complexity report](https://cliffano.github.io/awstaga/complexity/wily/index.html)
+* [Code complexity report](https://cliffano.github.io/awstaga/complexity/radon/index.html)
 * [Unit tests report](https://cliffano.github.io/awstaga/test/pytest/index.html)
 * [Test coverage report](https://cliffano.github.io/awstaga/coverage/coverage/index.html)
 * [Integration tests report](https://cliffano.github.io/awstaga/test-integration/pytest/index.html)
