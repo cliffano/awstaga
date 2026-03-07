@@ -1,3 +1,13 @@
 ---
 author: Cliffano Subagio
 package_name: awstaga
+generator:
+  component: python-cli
+  inputs:
+    project_id: awstaga
+    project_name: Awstaga
+    project_desc: Python CLI for batch tagging AWS resources
+    author_name: Cliffano Subagio
+    author_email: cliffano@gmail.com
+    github_id: cliffano
+    github_repo: awstaga

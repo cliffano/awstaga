@@ -11,10 +11,11 @@ jobs:
           set-safe-directory: ${{ github.workspace }}
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.14'
+          python-version: '3.12'
       - run: git config --global user.email 'pakkunbot'
       - run: git config --global user.name 'blah+pakkun@cliffano.com'
       - run: make clean deps deps-upgrade
+      - run: sudo make deps-extra-apt
       # Specify explicit targets below instead of using ci target
       # and exclude complexity target due to wily checking repository status
       - run: make clean deps style lint test coverage doc package reinstall test-integration

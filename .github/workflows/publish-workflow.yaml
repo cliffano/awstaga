@@ -9,8 +9,10 @@ jobs:
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v5
+        with:
+          set-safe-directory: ${{ github.workspace }}
       - uses: actions/setup-python@v6
         with:
-          python-version: '3.14'
+          python-version: '3.12'
       - run: make clean deps package install
       - run: make publish PASSWORD=${{ secrets.PYPI_TOKEN }}
