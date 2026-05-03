@@ -4,7 +4,7 @@
 ################################################################
 
 # PieMaker's version number
-PIEMAKER_VERSION = 2.2.1
+PIEMAKER_VERSION = 2.3.0
 
 ################################################################
 # User configuration variables
@@ -22,9 +22,9 @@ PACKAGE_NAME=$(shell yq .package_name piemaker.yml)
 AUTHOR ?= $(shell yq .author piemaker.yml)
 
 $(info ################################################################)
-$(info Building Python package using PieMaker with user configurations:)
-$(info - Package name: ${PACKAGE_NAME})
-$(info - Author: ${AUTHOR})
+$(info Building Python package using PieMaker with user configurations...)
+$(info - Package name = ${PACKAGE_NAME})
+$(info - Author = ${AUTHOR})
 
 export POETRY_HOME := /opt/poetry
 export VIRTUAL_ENV := .venv
@@ -47,7 +47,7 @@ stage:
 
 # Remove all temporary (staged, generated, cached) files
 clean:
-	rm -rf stage/ *.lock *.egg-info build dist/ docs/ $(PACKAGE_NAME)/__pycache__/ $(PACKAGE_NAME)/*.pyc tests/__pycache__/ tests/*.pyc .coverage ~/.wily/ .pytest_cache/ .tox/ .mypy_cache/ .coverage.*
+	rm -rf stage/ *.lock *.egg-info build dist/ docs/ $(PACKAGE_NAME)/__pycache__/ $(PACKAGE_NAME)/*.pyc tests/__pycache__/ tests/*.pyc .coverage .pytest_cache/ .tox/ .mypy_cache/ .coverage.*
 
 # Retrieve the Pyhon package dependencies
 deps:
@@ -175,9 +175,6 @@ package:
 install: package
 	$(call python_venv,poetry install)
 
-install-wheel: package
-	$(call python_venv,pip3 install dist/$(PACKAGE_NAME)-*.whl)
-
 uninstall:
 	$(call python_venv,pip3 uninstall $(PACKAGE_NAME) -y || echo "Nothing to uninstall...")
 
@@ -198,4 +195,4 @@ doc: stage
 
 ################################################################
 
-.PHONY: all ci clean complexity configurations coverage deps deps-extra-apt deps-upgrade rmdeps doc export export export install install-wheel lint name package package publish reinstall release-major release-minor release-patch stage style test test-examples test-integration uninstall update-to-latest update-to-latest update-to-main update-to-version
+.PHONY: all ci clean complexity configurations coverage deps deps-extra-apt deps-upgrade rmdeps doc export export export install lint name package package publish reinstall release-major release-minor release-patch stage style test test-examples test-integration uninstall update-dotfiles update-to-latest update-to-latest update-to-main update-to-version
