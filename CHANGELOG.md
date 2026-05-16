@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Changed
+- Refactor configuration loading with pyyaml-include 2.x
+
 ## 2.1.1 - 2026-05-16
 ### Changed
 - Upgrade PieMaker to 2.3.1

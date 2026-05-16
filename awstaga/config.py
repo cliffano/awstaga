@@ -3,7 +3,7 @@
 from typing import Tuple
 import os
 import yaml
-from yamlinclude import YamlIncludeConstructor
+from yaml_include import Constructor
 from .models.resource import Resource
 from .models.tag import Tag
 from .models.tagset import TagSet
@@ -14,8 +14,10 @@ def load(conf_file: str, dry_run: bool) -> Tuple[dict, list]:
     """Load configuration values from file."""
 
     logger = init(dry_run)
-    YamlIncludeConstructor.add_to_loader_class(
-        loader_class=yaml.FullLoader, base_dir=os.path.dirname(conf_file)
+    yaml.add_constructor(
+        "!include",
+        Constructor(base_dir=os.path.dirname(conf_file)),
+        Loader=yaml.FullLoader,
     )
 
     tagsets = {}
