@@ -1,14 +1,12 @@
-<img align="right" src="https://raw.github.com/cliffano/awstaga/main/avatar.jpg" alt="Avatar"/>
+![Avatar](avatar.jpg)
 
 [![Build Status](https://github.com/cliffano/awstaga/workflows/CI/badge.svg)](https://github.com/cliffano/awstaga/actions?query=workflow%3ACI)
 [![Code Scanning Status](https://github.com/cliffano/awstaga/workflows/CodeQL/badge.svg)](https://github.com/cliffano/awstaga/actions?query=workflow%3ACodeQL)
 [![Dependencies Status](https://img.shields.io/librariesio/release/pypi/awstaga)](https://libraries.io/pypi/awstaga)
 [![Security Status](https://snyk.io/test/github/cliffano/awstaga/badge.svg)](https://snyk.io/test/github/cliffano/awstaga)
 [![Published Version](https://img.shields.io/pypi/v/awstaga.svg)](https://pypi.python.org/pypi/awstaga)
-<br/>
 
-Awstaga
--------
+# Awstaga
 
 Awstaga is a Python CLI for batch tagging AWS resources.
 
@@ -16,13 +14,11 @@ This package is intended as a companion for [AWS Tag Editor](https://docs.aws.am
 
 Using Awstaga, you can easily re-run the resource tagging by running the CLI again. And with its YAML configuration support, it allows you to define multiple tagsets which you can mix and match with the AWS resources. You can construct your own mapping between the resources and the relevant tags and tagsets. You can generate the YAML configuration using your own script, allowing you to construct a more complex filtering logic.
 
-Installation
-------------
+## Installation
 
     pip3 install awstaga
 
-Usage
------
+## Usage
 
 Create a configuration file, e.g. `awstaga.yaml`:
 
@@ -153,8 +149,7 @@ By default, the delay is 2 seconds. The delay is applied between each batch of t
 
 Please note that AWS limits the number of tagging API (`tag_resources`) calls to [maximum of 5 calls per second](https://docs.aws.amazon.com/general/latest/gr/arg.html).
 
-Configuration
--------------
+## Configuration
 
 These are the configuration properties that you can use with `awstaga` CLI.
 Some example configuration files are available on [examples](examples) folder.
@@ -173,16 +168,14 @@ Some example configuration files are available on [examples](examples) folder.
 | `resources[].tags[].value` | String | The tag value. | `Some description` |
 | `resources[].tagsetnames[]` | Array | A list of one or more tagset names. All tags within the tagsets specified are included in the resource. | |
 
-Permissions
------------
+## Permissions
 
 The AWS credentials used to run `awstaga` CLI must have [the following permissions](https://docs.aws.amazon.com/ARG/latest/userguide/gettingstarted-prereqs.html):
 
 * Permission to use AWS Resource Groups API
 * Permission to tag resources for individual AWS services that you want to tag
 
-Colophon
---------
+## Colophon
 
 [Developer's Guide](https://cliffano.github.io/developers_guide.html#python)
 
